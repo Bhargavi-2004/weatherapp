@@ -1,0 +1,8 @@
+What is asynchronous in ReactJS?
+React Async is a utility belt for declarative promise resolution and data fetching. It makes it easy to handle asynchronous UI states, without assumptions about the shape of your data or the type of request.
+
+What is AsyncPaginate ?
+AsyncPaginate is an alternative of Async but supports loading page by page. It is wrapper above default react-select thus it accepts all props of default Select.
+
+How to use Async paginate?
+AsyncPaginate is the component of react-select-async-paginate library. It uses loadOptions function attribute to load the option into the select box and it expect return value as {options: [], hasMore: false}.

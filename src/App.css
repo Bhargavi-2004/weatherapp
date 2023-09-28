@@ -14,6 +14,8 @@
 }
 
 .App-header {
+  display: grid;
+  grid-template-columns: 18% 62% 20%;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -35,4 +37,106 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* App container */
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 18% 62% 20%;
+}
+
+/* Navbar Section */
+
+.navbar-vertical {
+  grid-column: 1;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+}
+
+.navbar-vertical .nav-link {
+  color: #343a40;
+  text-decoration: none;
+}
+
+.navbar-vertical .nav-link.active {
+  background-color: #e9ecef;
+}
+
+.nav-ul {
+  list-style: none;
+}
+
+.nav-item {
+  padding: 10px 12px;
+}
+
+.nav-link {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* weather name */
+.weather-name {
+  font-size: 2.5rem;
+  color: rgb(49, 49, 171);
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-top: 12px;
+}
+
+/* Main-container */
+
+.main-container {
+  grid-column: 2;
+}
+
+.horizontal-nav {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  background-color: #f8f9fa;
+  width: 842px;
+  height: 98px;
+  /* border: 2px solid black; */
+  margin-top: 12px;
+  margin: 12px;
+}
+
+.date-time {
+  grid-column: 1;
+}
+
+.day,
+.date {
+  padding-left: 12px;
+}
+
+.search {
+  grid-column: 2;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+/* Show-container */
+
+.show-container {
+  grid-column: 3;
+}
+
+.weather-navbar {
+  height: 100vh;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
 }
