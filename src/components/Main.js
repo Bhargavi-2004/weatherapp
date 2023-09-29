@@ -1,26 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
-import { apikey, base } from "./Apikey";
+import { apikey, base, url, geoApioptions } from "./Apikey";
 import "../App.css";
-
-async function loadedOptions() {
-  const apicall = await fetch(`${base}lat=19.0760&lon=72.8777&appid=${apikey}
-  `);
-  const response = await apicall.json();
-  console.log(response);
-
-  const options = [
-    {
-      label: response.city.name,
-    },
-  ];
-
-  return {
-    options,
-  };
-}
-
-function handleSearch() {}
 
 let days = [
   "Sunday",
@@ -63,6 +44,45 @@ const dateBuilder = (d) => {
 };
 
 function Main() {
+  const [search, setSearch] = useState(null);
+
+  async function loadedOptions(inputvalue) {
+    // try {
+    //   const response = await fetch(url, options);
+    //   const result = await response.text();
+    //   console.log(result);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+
+    const call = await fetch(
+      `${url}?minPopulation=100000&namePrefix=${inputvalue}`,
+      geoApioptions
+    );
+
+    const call_response = await call.json();
+    console.log(call_response);
+
+    const apicall = await fetch(`${base}lat=19.0760&lon=72.8777&appid=${apikey}
+    `);
+    const response = await apicall.json();
+    console.log(response);
+
+    const options = [
+      {
+        label: response.city.name,
+      },
+    ];
+
+    return {
+      options,
+    };
+  }
+
+  function handleSearch(searchData) {
+    setSearch(searchData);
+  }
+
   return (
     <>
       <div className="main-container">

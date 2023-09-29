@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: whitesmoke;
 }
 
 .App-link {
@@ -43,7 +43,7 @@
 .container {
   display: grid;
   height: 100vh;
-  grid-template-columns: 18% 62% 20%;
+  grid-template-columns: 18% 62% 20.2%;
 }
 
 /* Navbar Section */
@@ -133,18 +133,72 @@
 
 .show-container {
   grid-column: 3;
+  /* height: 100vh; */
+  margin-top: 0;
+  background-color: #053a6e;
+  border-right: 1px solid #e9ecef;
+  color: rgb(219, 214, 214);
 }
 
 .weather-navbar {
-  height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #053a6e;
   border-right: 1px solid #e9ecef;
 }
+
 .showWeather-ul {
+  margin: 0px;
   list-style: none;
 }
 
 .overview {
   font-size: 1.8rem;
-  color: rgb(49, 49, 171);
+  color: rgb(219, 214, 214);
+}
+
+/* Icon */
+
+.icon {
+  padding-left: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.showWeather-ul li {
+  padding: 12px 12px 12px 12px;
+}
+
+.city {
+  margin: 0px;
+}
+
+.nav-item-p {
+  padding: -20px 12px 12px 12px;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0px;
+}
+
+/* Detail */
+
+.detail {
+  margin-top: 30px;
+  display: grid;
+}
+
+.icon {
+  grid-column: 1;
+  display: grid;
+  grid-row: 1;
+}
+
+.nav-item-temp {
+  font-size: 1.8rem;
+  grid-row: 2;
+  margin: 0px;
+  color: white;
+}
+
+.detail-icon {
+  grid-column: 2;
+  margin-top: 53px;
 }

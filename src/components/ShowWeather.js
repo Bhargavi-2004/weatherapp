@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { base, apikey } from "./Apikey";
+import ReactAnimatedWeather from "react-animated-weather";
 
 function ShowWeather() {
   const [state, setState] = useState({
@@ -34,7 +35,41 @@ function ShowWeather() {
   `);
     const response = await apicall.json();
     console.log(response);
+
+    switch (state.weather) {
+      case "Haze":
+        setState({ ...state, icon: "CLEAR_DAY" });
+        break;
+      case "Clouds":
+        setState({ ...state, icon: "CLOUDY" });
+        break;
+      case "Rain":
+        setState({ ...state, icon: "RAIN" });
+        break;
+      case "Snow":
+        setState({ ...state, icon: "SNOW" });
+        break;
+      case "Dust":
+        setState({ ...state, icon: "WIND" });
+        break;
+      case "Drizzle":
+        setState({ ...state, icon: "SLEET" });
+        break;
+      case "Fog":
+        setState({ ...state, icon: "FOG" });
+        break;
+      case "Smoke":
+        setState({ ...state, icon: "FOG" });
+        break;
+      case "Tornado":
+        setState({ ...state, icon: "WIND" });
+        break;
+      default:
+        setState({ ...state, icon: "CLEAR_DAY" });
+    }
+
     setState({
+      ...state,
       lat: lat,
       lon: lon,
       city: response.city.name,
@@ -49,38 +84,6 @@ function ShowWeather() {
       visibility: response.list[0].visibility,
       weather: response.list[0].weather[0].main,
     });
-
-    switch (state.weather) {
-      case "Haze":
-        setState({ ...state, icon: "CLEAR_DAY" });
-        break;
-      case "Clouds":
-        setState({ ...state,icon: "CLOUDY" });
-        break;
-      case "Rain":
-        setState({ ...state,icon: "RAIN" });
-        break;
-      case "Snow":
-        setState({ ...state,icon: "SNOW" });
-        break;
-      case "Dust":
-        setState({ ...state,icon: "WIND" });
-        break;
-      case "Drizzle":
-        setState({ ...state,icon: "SLEET" });
-        break;
-      case "Fog":
-        setState({ ...state,icon: "FOG" });
-        break;
-      case "Smoke":
-        setState({ ...state,icon: "FOG" });
-        break;
-      case "Tornado":
-        setState({ ...state,icon: "WIND" });
-        break;
-      default:
-        setState({ ...state,icon: "CLEAR_DAY" });
-    }
   }
 
   useEffect(() => {
@@ -102,29 +105,40 @@ function ShowWeather() {
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
 
+  const defaults = {
+    icon: state.icon,
+    color: "darkgrey",
+    size: 35,
+    animate: true,
+  };
+
   return (
     <>
       <div className="show-container">
         <nav className="weather-navbar">
           <ul className="showWeather-ul">
-            <li className="nav item">
+            <li className="nav-item">
               <a className="overview">Today Overview</a>
             </li>
-            <li className="nav item">{state.lon}</li>
-            <li className="nav item">{state.lat}</li>
-            <li className="nav item">{state.city}</li>
-            <li className="nav item">{state.country}</li>
-            <li className="nav item">{state.sunrise}</li>
-            <li className="nav item">{state.sunset}</li>
-            <li className="nav item">{state.temperatureC}</li>
-            <li className="nav item">{state.temperatureF}</li>
-            <li className="nav item">{state.wind}</li>
-            <li className="nav item">{state.pressure}</li>
-            <li className="nav item">{state.humidity}</li>
-            <li className="nav item">{state.visibility}</li>
-            <li className="nav item">{state.weather}</li>
-            <li className="nav item">{state.icon}</li>
           </ul>
+          <div className="city">
+            <p className="nav-item-p">
+              {state.city}-{state.country}
+            </p>
+          </div>
+          <div className="detail">
+            <div className="icon">
+              <ReactAnimatedWeather
+                icon={defaults.icon}
+                color={defaults.color}
+                size={defaults.size}
+                animate={defaults.animate}
+              />
+              <p className="nav-item-temp">{state.temperatureC}°C</p>
+            </div>
+
+            <p className="detail-icon">{state.icon}</p>
+          </div>
         </nav>
       </div>
     </>

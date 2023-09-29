@@ -5,3 +5,12 @@ module.exports.base = "https://api.openweathermap.org/data/2.5/forecast?";
 // await fetch(`api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=${apikey}
 // `);
 
+module.exports.url = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities';
+module.exports.geoApioptions = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '77ef47f6acmsh7e59d2de46bcb32p1ba98fjsn3e70c1b60d7d',
+		'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+	}
+};
+
