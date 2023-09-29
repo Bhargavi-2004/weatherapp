@@ -1,0 +1,5 @@
+>> Axios : library
+
+Axios is a popular JavaScript library for making HTTP requests from a web browser or a Node. js server. 
+
+It performs various operations, such as retrieving and sending data and handling responses.

@@ -151,7 +151,7 @@
 }
 
 .overview {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: rgb(219, 214, 214);
 }
 
@@ -173,7 +173,7 @@
 
 .nav-item-p {
   padding: -20px 12px 12px 12px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
   margin: 0px;
 }
