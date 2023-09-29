@@ -140,3 +140,11 @@
   background-color: #f8f9fa;
   border-right: 1px solid #e9ecef;
 }
+.showWeather-ul {
+  list-style: none;
+}
+
+.overview {
+  font-size: 1.8rem;
+  color: rgb(49, 49, 171);
+}

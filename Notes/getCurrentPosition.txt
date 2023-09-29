@@ -1,0 +1,6 @@
+Syntax:
+
+navigator.geolocation.getCurrentPosition(success, error, options)
+
+for more refer:
+https://www.w3schools.com/jsref/met_geo_getcurrentposition.asp
