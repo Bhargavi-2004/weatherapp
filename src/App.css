@@ -101,9 +101,12 @@
 
 .main-container {
   grid-column: 2;
+  display: grid;
+  grid-template-rows: 15% 75%;
 }
 
 .horizontal-nav {
+  grid-row: 1;
   display: grid;
   grid-template-columns: 60% 40%;
   background-color: #f8f9fa;
@@ -127,6 +130,63 @@
   grid-column: 2;
   margin-right: 50px;
   margin-top: 20px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.search input {
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 300px;
+}
+
+.climate {
+  grid-row: 2;
+  margin: 10px 12px;
+}
+
+.climate-cards {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  height: 200px;
+  margin-top: 5px;
+}
+
+.card {
+  background-color: #e9ecef;
+  margin: 6px 6px;
+}
+
+#wind {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.climate-p {
+  margin-bottom: -24px;
+  padding-left: 148px;
+}
+
+.climate-p h1 {
+  margin-top: 0px;
+  font-weight: 400;
+}
+
+#humidity {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#pressure {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#visibility {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 /* Show-container */
