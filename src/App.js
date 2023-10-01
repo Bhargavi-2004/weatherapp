@@ -9,7 +9,7 @@ function App() {
       <div className="container">
         <Navbar />
         <Main />
-        <ShowWeather />
+        {/* <ShowWeather /> */}
       </div>
     </>
   );

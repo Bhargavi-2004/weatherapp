@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { apikey, base } from "./Apikey";
 import "../App.css";
-import axios from "axios";
+import ShowWeather from "./ShowWeather";
 
 let days = [
   "Sunday",
@@ -44,9 +44,7 @@ const dateBuilder = (d) => {
   return `${month} ${date}, ${year}`;
 };
 
-function Main(props) {
-  const [search, setSearch] = useState(null);
-
+function Main() {
   const [state, setState] = useState({
     lat: undefined,
     lon: undefined,
@@ -75,9 +73,25 @@ function Main(props) {
 
   async function getWeather(lat, lon) {
     const apicall = await fetch(`${base}lat=${lat}&lon=${lon}&appid=${apikey}
-`);
+  `);
     const response = await apicall.json();
     console.log(response);
+    setState({
+      lat: lat,
+      lon: lon,
+      city: response.city.name,
+      country: response.city.country,
+      sunrise: response.city.sunrise,
+      sunset: response.city.sunset,
+      temperatureC: Math.round(response.list[0].main.temp),
+      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
+      pressure: response.list[0].main.pressure,
+      humidity: response.list[0].main.humidity,
+      wind: response.list[0].wind.speed,
+      visibility: response.list[0].visibility,
+      weather: response.list[0].weather[0].main,
+    });
+    console.log(state);
 
     switch (state.weather) {
       case "Haze":
@@ -110,23 +124,6 @@ function Main(props) {
       default:
         setState({ ...state, icon: "CLEAR_DAY" });
     }
-
-    setState({
-      ...state,
-      lat: lat,
-      lon: lon,
-      city: response.city.name,
-      country: response.city.country,
-      sunrise: response.city.sunrise,
-      sunset: response.city.sunset,
-      temperatureC: Math.round(response.list[0].main.temp),
-      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
-      pressure: response.list[0].main.pressure,
-      humidity: response.list[0].main.humidity,
-      wind: response.list[0].wind.speed,
-      visibility: response.list[0].visibility,
-      weather: response.list[0].weather[0].main,
-    });
   }
 
   useEffect(() => {
@@ -144,46 +141,36 @@ function Main(props) {
     } else {
       alert("Geolocation not available");
     }
-  }, []);
+  }, [state]);
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
 
-  async function loadedOptions(inputvalue) {
-    const apicall = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${inputvalue}&appid=${apikey}`
-    );
-    const response = await apicall.json();
-    console.log(response);
+  const defaults = {
+    icon: state.icon,
+    color: "darkgrey",
+    size: 35,
+    animate: true,
+  };
 
-    getWeather(response.coords.lat, response.coords.lon);
-    const options = [
-      {
-        label: response.city.name,
-      },
-    ];
+  // async function loadedOptions(inputvalue) {
+  //   const apicall = await fetch(
+  //     `https://api.openweathermap.org/data/2.5/weather?q=${inputvalue}&appid=${apikey}`
+  //   );
+  //   const response = await apicall.json();
+  //   console.log(response);
 
-    return {
-      options,
-    };
-  }
+  //   getWeather(response.coords.lat, response.coords.lon);
+  //   const options = [
+  //     {
+  //       label: response.city.name,
+  //     },
+  //   ];
 
-  const [query, setQuery] = useState("");
-
-  async function handleSearch(city) {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${
-          city != "[object Object]" ? city : query
-        }&units=metric&APPID=${apikey}`
-      )
-      .then((response) => {
-        console.log(response);
-        getWeather(response.city.coord.lat, response.city.coord.lon);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //   return {
+  //     options,
+  //   };
+  // }
+  // function handleSearch() {}
 
   return (
     <>
@@ -193,23 +180,7 @@ function Main(props) {
             <p className="date">{dateBuilder(new Date())}</p>
             <p className="day">{dayBuilder(new Date())}</p>
           </div>
-
-          <div className="search">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search any city"
-              onChange={(e) => {
-                setQuery(e.target.value);
-                handleSearch(e.target.value);
-              }}
-              value={query}
-            />
-            {/* <AsyncPaginate
-              loadOptions={loadedOptions}
-              onChange={handleSearch}
-            /> */}
-          </div>
+          {/* <AsyncPaginate loadOptions={loadedOptions} onChange={handleSearch} /> */}
         </nav>
         <div className="climate">
           <h3>Today Overview</h3>
@@ -240,6 +211,16 @@ function Main(props) {
             </div>
           </div>
         </div>
+        <ShowWeather
+          city={state.city}
+          country={state.country}
+          temperatureC={state.temperatureC}
+          icon={state.icon}
+          icons={defaults.icon}
+          color={defaults.color}
+          size={defaults.size}
+          animate={defaults.animate}
+        />
       </div>
     </>
   );

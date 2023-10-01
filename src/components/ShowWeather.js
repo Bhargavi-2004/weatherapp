@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { base, apikey } from "./Apikey";
+import { apikey, base } from "./Apikey";
 import ReactAnimatedWeather from "react-animated-weather";
 
-function ShowWeather() {
+function ShowWeather(props) {
   const [state, setState] = useState({
     lat: undefined,
     lon: undefined,
@@ -35,6 +35,23 @@ function ShowWeather() {
   `);
     const response = await apicall.json();
     console.log(response);
+    setState({
+      lat: lat,
+      lon: lon,
+      city: response.city.name,
+      country: response.city.country,
+      sunrise: response.city.sunrise,
+      sunset: response.city.sunset,
+      temperatureC: Math.round(response.list[0].main.temp),
+      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
+      pressure: response.list[0].main.pressure,
+      humidity: response.list[0].main.humidity,
+      wind: response.list[0].wind.speed,
+      visibility: response.list[0].visibility,
+      weather: response.list[0].weather[0].main,
+    });
+
+    console.log(state);
 
     switch (state.weather) {
       case "Haze":
@@ -67,23 +84,6 @@ function ShowWeather() {
       default:
         setState({ ...state, icon: "CLEAR_DAY" });
     }
-
-    setState({
-      ...state,
-      lat: lat,
-      lon: lon,
-      city: response.city.name,
-      country: response.city.country,
-      sunrise: response.city.sunrise,
-      sunset: response.city.sunset,
-      temperatureC: Math.round(response.list[0].main.temp),
-      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
-      pressure: response.list[0].main.pressure,
-      humidity: response.list[0].main.humidity,
-      wind: response.list[0].wind.speed,
-      visibility: response.list[0].visibility,
-      weather: response.list[0].weather[0].main,
-    });
   }
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function ShowWeather() {
     } else {
       alert("Geolocation not available");
     }
-  }, []);
+  }, [state]);
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
 
@@ -111,7 +111,7 @@ function ShowWeather() {
     size: 35,
     animate: true,
   };
-
+  
   return (
     <>
       <div className="show-container">
@@ -121,6 +121,24 @@ function ShowWeather() {
               <a className="overview">Today Overview</a>
             </li>
           </ul>
+          {/* <div className="city">
+            <p className="nav-item-p">
+              {props.city}-{props.country}
+            </p>
+          </div>
+          <div className="detail">
+            <div className="icon">
+              <ReactAnimatedWeather
+                icons={props.icon}
+                color={props.color}
+                size={props.size}
+                animate={props.animate}
+              />
+              <p className="nav-item-temp">{props.temperatureC}°C</p>
+            </div>
+
+            <p className="detail-icon">{props.icon}</p>
+          </div> */}
           <div className="city">
             <p className="nav-item-p">
               {state.city}-{state.country}
@@ -129,7 +147,7 @@ function ShowWeather() {
           <div className="detail">
             <div className="icon">
               <ReactAnimatedWeather
-                icon={defaults.icon}
+                icons={defaults.icon}
                 color={defaults.color}
                 size={defaults.size}
                 animate={defaults.animate}
