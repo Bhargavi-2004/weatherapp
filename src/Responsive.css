@@ -1,0 +1,30 @@
+/* main-container */
+.main-container {
+  /* grid-column: 2;
+  display: grid;
+  grid-template-rows: 18% 80%;
+  grid-auto-columns: 72% 27.5%;
+  height: 100vh; */
+  grid-template-rows: 10% 90%;
+  margin-left: -103px;
+}
+
+/* horizontal nav */
+
+@media (width: 1677px) and (height: 555px) {
+  .container {
+    display: grid;
+    grid-template-columns: 15% 85.5%;
+  }
+
+  .horizontal-nav {
+    margin-left: 111px;
+    width: 974px;
+  }
+
+  .climate {
+    grid-row: 2;
+    margin: 27px 16px;
+    padding-left: 100px;
+  }
+}

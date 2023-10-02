@@ -101,7 +101,7 @@ function ShowWeather(props) {
     } else {
       alert("Geolocation not available");
     }
-  }, [state]);
+  }, []);
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
 

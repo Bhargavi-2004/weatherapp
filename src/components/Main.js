@@ -210,6 +210,9 @@ function Main() {
               </p>
             </div>
           </div>
+          <div className="chart">
+            <h1>Weekly Temperature</h1>
+          </div>
         </div>
         <ShowWeather
           city={state.city}
