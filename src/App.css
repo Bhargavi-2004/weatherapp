@@ -294,7 +294,7 @@
     grid-column: 2;
     display: grid;
     grid-template-rows: 18% 80%;
-    grid-auto-columns: 72% 27.5%;
+    grid-auto-columns: 73% 27%;
     height: 100vh;
     grid-template-rows: 10% 90%;
     margin-left: -103px;
@@ -318,7 +318,7 @@
   }
 }
 
-@media (min-width: 1352px) and (min-height: 421px) {
+/* @media (min-width: 1352px) and (min-height: 421px) {
   .horizontal-nav {
     width: 769px;
   }
@@ -336,4 +336,4 @@
   .climate {
     margin: -30px 0px 0px 50px;
   }
-}
+} */

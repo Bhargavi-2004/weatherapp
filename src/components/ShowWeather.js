@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { apikey, base } from "./Apikey";
-import ReactAnimatedWeather from "react-animated-weather";
+import { base, apikey } from "./Apikey";
 
 function ShowWeather(props) {
   const [state, setState] = useState({
@@ -26,18 +25,19 @@ function ShowWeather(props) {
 
   function getPosition(options) {
     return new Promise(function (resolve, reject) {
+      // alert("Access");
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
   }
 
   async function getWeather(lat, lon) {
-    const apicall = await fetch(`${base}lat=${lat}&lon=${lon}&appid=${apikey}
-  `);
+    const apicall = await fetch(`${base}lat=${lat}&lon=${lon}&appid=${apikey}`);
     const response = await apicall.json();
     console.log(response);
+
     setState({
-      lat: lat,
-      lon: lon,
+      lat: response.city.coord.lat,
+      lon: response.city.coord.lon,
       city: response.city.name,
       country: response.city.country,
       sunrise: response.city.sunrise,
@@ -51,7 +51,84 @@ function ShowWeather(props) {
       weather: response.list[0].weather[0].main,
     });
 
-    console.log(state);
+    console.log("setState: ", state);
+
+    
+  }
+
+  const get_weather = getWeather;
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      getPosition()
+        .then((position) => {
+          getWeather(position.coords.latitude, position.coords.longitude);
+        })
+        .catch((err) => {
+          getWeather(26.67, 77.22);
+          alert(
+            "You have disabled location service. Allow 'This APP' to access your location. Your current location will be used for calculating Real time weather."
+          );
+        });
+    } else {
+      alert("Geolocation not available");
+    }
+  }, []);
+
+  setInterval(() => getWeather(state.lat, state.lon), 600000);
+
+  return (
+    <>
+      <div className="show-container">
+        <nav className="weather-navbar">
+          <ul className="showWeather-ul">
+            <li className="nav item">
+              <a className="overview">Today Overview</a>
+            </li>
+            <li className="nav item">{state.lon}</li>
+            <li className="nav item">{state.lat}</li>
+            <li className="nav item">{state.city}</li>
+            <li className="nav item">{state.country}</li>
+            <li className="nav item">{state.sunrise}</li>
+            <li className="nav item">{state.sunset}</li>
+            <li className="nav item">{state.temperatureC}</li>
+            <li className="nav item">{state.temperatureF}</li>
+            <li className="nav item">{state.wind}</li>
+            <li className="nav item">{state.pressure}</li>
+            <li className="nav item">{state.humidity}</li>
+            <li className="nav item">{state.visibility}</li>
+            <li className="nav item">{state.weather}</li>
+            <li className="nav item">{state.icon}</li>
+          </ul>
+        </nav>
+      </div>
+    </>
+  );
+}
+
+export default ShowWeather;
+
+
+/*
+
+
+    setState({
+      lat: response.city.coord.lat,
+      lon: response.city.coord.lon,
+      city: response.city.name,
+      country: response.city.country,
+      sunrise: response.city.sunrise,
+      sunset: response.city.sunset,
+      temperatureC: Math.round(response.list[0].main.temp),
+      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
+      pressure: response.list[0].main.pressure,
+      humidity: response.list[0].main.humidity,
+      wind: response.list[0].wind.speed,
+      visibility: response.list[0].visibility,
+      weather: response.list[0].weather[0].main,
+    });
+
+    console.log("setState: ", state);
 
     switch (state.weather) {
       case "Haze":
@@ -84,83 +161,6 @@ function ShowWeather(props) {
       default:
         setState({ ...state, icon: "CLEAR_DAY" });
     }
-  }
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      getPosition()
-        .then((position) => {
-          getWeather(position.coords.latitude, position.coords.longitude);
-        })
-        .catch((err) => {
-          getWeather(26.67, 77.22);
-          alert(
-            "You have disabled location service. Allow 'This APP' to access your location. Your current location will be used for calculating Real time weather."
-          );
-        });
-    } else {
-      alert("Geolocation not available");
-    }
-  }, []);
 
-  setInterval(() => getWeather(state.lat, state.lon), 600000);
-
-  const defaults = {
-    icon: state.icon,
-    color: "darkgrey",
-    size: 35,
-    animate: true,
-  };
-  
-  return (
-    <>
-      <div className="show-container">
-        <nav className="weather-navbar">
-          <ul className="showWeather-ul">
-            <li className="nav-item">
-              <a className="overview">Today Overview</a>
-            </li>
-          </ul>
-          {/* <div className="city">
-            <p className="nav-item-p">
-              {props.city}-{props.country}
-            </p>
-          </div>
-          <div className="detail">
-            <div className="icon">
-              <ReactAnimatedWeather
-                icons={props.icon}
-                color={props.color}
-                size={props.size}
-                animate={props.animate}
-              />
-              <p className="nav-item-temp">{props.temperatureC}°C</p>
-            </div>
-
-            <p className="detail-icon">{props.icon}</p>
-          </div> */}
-          <div className="city">
-            <p className="nav-item-p">
-              {state.city}-{state.country}
-            </p>
-          </div>
-          <div className="detail">
-            <div className="icon">
-              <ReactAnimatedWeather
-                icons={defaults.icon}
-                color={defaults.color}
-                size={defaults.size}
-                animate={defaults.animate}
-              />
-              <p className="nav-item-temp">{state.temperatureC}°C</p>
-            </div>
-
-            <p className="detail-icon">{state.icon}</p>
-          </div>
-        </nav>
-      </div>
-    </>
-  );
-}
-
-export default ShowWeather;
+*/

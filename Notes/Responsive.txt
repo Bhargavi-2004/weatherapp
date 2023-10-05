@@ -1,0 +1,2 @@
+refer :
+https://www.freecodecamp.org/news/responsive-design-best-practices/
