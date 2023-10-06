@@ -193,7 +193,51 @@
   grid-row: 2;
 }
 
-/* Show-container */
+/* .main-container {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 18% 80%;
+  grid-auto-columns: 72% 27.5%;
+  height: 100vh;
+  grid-template-rows: 10% 90%;
+  margin-left: -103px;
+} */
+
+@media (min-width: 1660px) and (min-height: 555px) {
+  .container {
+    display: grid;
+    grid-template-columns: 15% 85.5%;
+  }
+
+  .main-container {
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 18% 80%;
+    grid-auto-columns: 73% 27%;
+    height: 100vh;
+    grid-template-rows: 10% 90%;
+    margin-left: -103px;
+  }
+
+  .horizontal-nav {
+    margin-left: 111px;
+    grid-template-columns: 41% 40%;
+    width: 988px;
+  }
+
+  .climate {
+    grid-row: 2;
+    margin: 37px 16px;
+    padding-left: 100px;
+  }
+
+  .date-time {
+    grid-column: 1;
+    width: 400px;
+  }
+}
+
+/* Show Container */
 
 .show-container {
   grid-column: 2;
@@ -217,12 +261,6 @@
 .overview {
   font-size: 1.5rem;
   color: rgb(219, 214, 214);
-}
-
-.chart {
-  width: 799px;
-  height: 250px;
-  /* border: 2px solid red; */
 }
 
 /* Icon */
@@ -274,66 +312,7 @@
   margin-top: 53px;
 }
 
-/* .main-container {
-  grid-column: 2;
-  display: grid;
-  grid-template-rows: 18% 80%;
-  grid-auto-columns: 72% 27.5%;
-  height: 100vh;
-  grid-template-rows: 10% 90%;
-  margin-left: -103px;
-} */
-
-@media (min-width: 1660px) and (min-height: 555px) {
-  .container {
-    display: grid;
-    grid-template-columns: 15% 85.5%;
-  }
-
-  .main-container {
-    grid-column: 2;
-    display: grid;
-    grid-template-rows: 18% 80%;
-    grid-auto-columns: 73% 27%;
-    height: 100vh;
-    grid-template-rows: 10% 90%;
-    margin-left: -103px;
-  }
-
-  .horizontal-nav {
-    margin-left: 111px;
-    grid-template-columns: 41% 40%;
-    width: 988px;
-  }
-
-  .climate {
-    grid-row: 2;
-    margin: 37px 16px;
-    padding-left: 100px;
-  }
-
-  .date-time {
-    grid-column: 1;
-    width: 400px;
-  }
+.chart {
+  width: 799px;
+  height: 250px;
 }
-
-/* @media (min-width: 1352px) and (min-height: 421px) {
-  .horizontal-nav {
-    width: 769px;
-  }
-  .climate {
-    margin: 17px 12px 0px 0px;
-  }
-}
-
-@media (min-width: 1150px) and (min-height: 650px) {
-  .horizontal-nav {
-    width: 620px;
-    margin: 17px 50px;
-    margin: 10px 0px 0px 50px;
-  }
-  .climate {
-    margin: -30px 0px 0px 50px;
-  }
-} */

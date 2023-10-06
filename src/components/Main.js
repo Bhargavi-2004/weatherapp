@@ -3,6 +3,7 @@ import { AsyncPaginate } from "react-select-async-paginate";
 import { apikey, base } from "./Apikey";
 import "../App.css";
 import ShowWeather from "./ShowWeather";
+import ReactAnimatedWeather from "react-animated-weather";
 
 function Main() {
   const [state, setState] = useState({
@@ -25,6 +26,56 @@ function Main() {
     weather: undefined,
   });
 
+  function getPosition(options) {
+    return new Promise(function (resolve, reject) {
+      // alert("Access");
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+  }
+
+  async function getWeather(lat, lon) {
+    const apicall = await fetch(`${base}lat=${lat}&lon=${lon}&appid=${apikey}`);
+    const response = await apicall.json();
+    console.log(response);
+
+    setState({
+      lat: response.city.coord.lat,
+      lon: response.city.coord.lon,
+      city: response.city.name,
+      country: response.city.country,
+      sunrise: response.city.sunrise,
+      sunset: response.city.sunset,
+      temperatureC: Math.round(response.list[0].main.temp),
+      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
+      pressure: response.list[0].main.pressure,
+      humidity: response.list[0].main.humidity,
+      wind: response.list[0].wind.speed,
+      visibility: response.list[0].visibility,
+      weather: response.list[0].weather[0].main,
+    });
+
+    console.log("setState: ", state);
+  }
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      getPosition()
+        .then((position) => {
+          getWeather(position.coords.latitude, position.coords.longitude);
+        })
+        .catch((err) => {
+          getWeather(26.67, 77.22);
+          alert(
+            "You have disabled location service. Allow 'This APP' to access your location. Your current location will be used for calculating Real time weather."
+          );
+        });
+    } else {
+      alert("Geolocation not available");
+    }
+  }, []);
+
+  setInterval(() => getWeather(state.lat, state.lon), 600000);
+
   async function loadedOptions(city) {
     const apicall =
       await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}
@@ -39,15 +90,16 @@ function Main() {
       lat: response.coord.lat,
       lon: response.coord.lon,
       city: response.name,
-      temperatureC: response.main.temp,
-      temperatureF: response.main.temp,
+      temperatureC: Math.round(response.main.temp),
+      temperatureF: Math.round(response.main.temp * 1.8 + 32),
       country: response.sys.country,
       humidity: response.main.humidity,
-      icon: "CLEAR_DAY",
+      icon: response.weather[0].icon,
       wind: response.wind.speed,
       pressure: response.main.pressure,
       visibility: response.visibility,
-      weather: response.weather[0],
+      weather: response.weather[0].main,
+      description: response.weather[0].description,
     });
 
     const options = [
@@ -105,7 +157,7 @@ function Main() {
 
   const defaults = {
     icon: state.icon,
-    color: "darkgrey",
+    color: "white",
     size: 35,
     animate: true,
   };
@@ -160,7 +212,35 @@ function Main() {
           </div>
         </div>
 
-        <ShowWeather
+        <div className="show-container">
+          <nav className="weather-navbar">
+            <ul className="showWeather-ul">
+              <li className="nav-item">
+                <a className="overview">Today Overview</a>
+              </li>
+            </ul>
+            <div className="city">
+              <p className="nav-item-p">
+                {state.city}-{state.country}
+              </p>
+            </div>
+            <div className="detail">
+              <div className="icon">
+                <ReactAnimatedWeather
+                  icons={defaults.icon}
+                  color={defaults.color}
+                  size={defaults.size}
+                  animate={defaults.animate}
+                />
+                <p className="nav-item-temp">{state.temperatureC}°C</p>
+              </div>
+
+              <p className="detail-icon">{state.icon}</p>
+            </div>
+          </nav>
+        </div>
+
+        {/* <ShowWeather
           lat={state.lat}
           lon={state.lon}
           city={state.city}
@@ -176,7 +256,7 @@ function Main() {
           color={defaults.color}
           size={defaults.size}
           animate={defaults.animate}
-        />
+        /> */}
       </div>
     </>
   );
