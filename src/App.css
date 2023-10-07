@@ -260,7 +260,9 @@
 
 .overview {
   font-size: 1.5rem;
+  text-align: center;
   color: rgb(219, 214, 214);
+  margin-left: 19px;
 }
 
 /* Icon */
@@ -298,18 +300,20 @@
   grid-column: 1;
   display: grid;
   grid-row: 1;
+  margin-left: 25px;
 }
 
 .nav-item-temp {
   font-size: 1.8rem;
   grid-row: 2;
-  margin: 0px;
+  margin: 4px;
   color: white;
 }
 
 .detail-icon {
   grid-column: 2;
-  margin-top: 53px;
+  margin-top: 80px;
+  font-size: 2rem;
 }
 
 .chart {
