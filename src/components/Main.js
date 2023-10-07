@@ -103,38 +103,8 @@ function Main() {
       description: response.weather[0].description,
     });
 
-    switch (state.icon) {
-      case "Haze":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Clouds":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Rain":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Snow":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Dust":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Drizzle":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Fog":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Smoke":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      case "Tornado":
-        setState({ ...state, icon: response.weather[0].icon });
-        break;
-      default:
-        setState({ ...state, icon: response.weather[0].icon });
-    }
-
+    setSearch(city);
+    
     const options = [
       {
         label: response.city.name,
@@ -208,6 +178,7 @@ function Main() {
             <AsyncPaginate
               loadOptions={loadedOptions}
               onChange={handleSearch}
+              value={search}
             />
           </div>
         </nav>
