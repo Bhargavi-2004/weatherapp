@@ -161,6 +161,16 @@
 .card {
   background-color: #e9ecef;
   margin: 6px 6px;
+  z-index: 1;
+}
+
+.img {
+  position: relative;
+  z-index: 12;
+  height: 50px;
+  width: 50px;
+  margin-left: 30px;
+  margin-top: 25px;
 }
 
 #wind {
@@ -169,6 +179,7 @@
 }
 
 .climate-p {
+  margin-top: -63px;
   margin-bottom: -24px;
   padding-left: 148px;
 }

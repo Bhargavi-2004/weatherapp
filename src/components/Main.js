@@ -6,6 +6,7 @@ import ShowWeather from "./ShowWeather";
 import ReactAnimatedWeather from "react-animated-weather";
 import axios from "axios";
 
+
 function Main() {
   const [search, setSearch] = useState(" ");
   const [query, setQuery] = useState(" ");
@@ -80,7 +81,34 @@ function Main() {
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
 
-  async function handleSearch(city) {
+  async function handleSearch() {}
+
+  async function loadedOptions(city) {
+    const search_apicall = await fetch(`${url}?namePrefix=${city}`, getoptions)
+      .then((response) => response.json())
+      .then((response) => {
+        setSearch(city.name);
+        setState({
+          lat: city.data[0].latitude,
+          lon: city.data[0].longitude,
+        });
+
+        // console.log(response);
+
+        return {
+          options: response.data.map((city) => {
+            return {
+              value: `${city.latitude} ${city.longitude}`,
+              label: `${city.name}, ${city.countryCode}`,
+            };
+          }),
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+        return { options: [] }; // Return an object with an empty options prop
+      });
+
     const apicall =
       await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}
 `);
@@ -105,35 +133,7 @@ function Main() {
       weather: response.weather[0].main,
       description: response.weather[0].description,
     });
-
-    setSearch(city);
-  }
-
-  async function loadedOptions(city) {
-    const search_apicall = await fetch(`${url}?namePrefix=${city}`, getoptions)
-      .then((response) => response.json())
-      .then((response) => {
-        setSearch(city.name);
-        setState({
-          lat: city.data[0].latitude,
-          lon: city.data[0].longitude,
-        });
-
-        console.log(response);
-        return {
-          options: response.data.map((city) => {
-            return {
-              value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.countryCode}`,
-            };
-          }),
-        };
-      })
-      .catch((err) => {
-        console.log(err);
-        return { options: [] }; // Return an object with an empty options prop
-      });
-
+    setSearch(state.city);
     return search_apicall;
   }
 
@@ -206,24 +206,30 @@ function Main() {
           <h3>Today Overview</h3>
           <div className="climate-cards">
             <div id="wind" className="card">
+              <img src='./images/wind.jpg' className="img" alt="" srcset="" />
               <p className="climate-p">
                 Wind speed
                 <h1>{state.wind} Km/h</h1>
               </p>
             </div>
             <div id="humidity" className="card">
+              <img  src='./images/humidity.jpg' className="img" alt="" srcset="" />
               <p className="climate-p">
                 Humidity
                 <h1>{state.humidity} g.m-3</h1>
               </p>
             </div>
             <div id="pressure" className="card">
+              <img src='./images/pressure.jpg' className="img" alt="" srcset="" />
+
               <p className="climate-p">
                 Pressure
                 <h1>{state.pressure} hpa</h1>
               </p>
             </div>
             <div id="visibility" className="card">
+              <img src='./images/visibility.jpg' className="img" alt="" srcset="" />
+
               <p className="climate-p">
                 Visibility
                 <h1>{state.visibility} metres</h1>
