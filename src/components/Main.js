@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
-import { apikey, base } from "./Apikey";
+import { apikey, base, url, getoptions } from "./Apikey";
 import "../App.css";
 import ShowWeather from "./ShowWeather";
 import ReactAnimatedWeather from "react-animated-weather";
+import axios from "axios";
 
 function Main() {
   const [search, setSearch] = useState(" ");
+  const [query, setQuery] = useState(" ");
+  const [error, setError] = useState(" ");
   const [state, setState] = useState({
     lat: undefined,
     lon: undefined,
@@ -77,10 +80,10 @@ function Main() {
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
 
-  async function loadedOptions(city) {
+  async function handleSearch(city) {
     const apicall =
       await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}
-  `);
+`);
 
     // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
@@ -104,19 +107,35 @@ function Main() {
     });
 
     setSearch(city);
-    
-    const options = [
-      {
-        label: response.city.name,
-      },
-    ];
-
-    return {
-      options,
-    };
   }
 
-  function handleSearch() {}
+  async function loadedOptions(city) {
+    const search_apicall = await fetch(`${url}?namePrefix=${city}`, getoptions)
+      .then((response) => response.json())
+      .then((response) => {
+        setSearch(city.name);
+        setState({
+          lat: city.data[0].latitude,
+          lon: city.data[0].longitude,
+        });
+
+        console.log(response);
+        return {
+          options: response.data.map((city) => {
+            return {
+              value: `${city.latitude} ${city.longitude}`,
+              label: `${city.name}, ${city.countryCode}`,
+            };
+          }),
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+        return { options: [] }; // Return an object with an empty options prop
+      });
+
+    return search_apicall;
+  }
 
   let days = [
     "Sunday",
