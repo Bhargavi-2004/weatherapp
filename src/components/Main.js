@@ -238,6 +238,8 @@ function Main() {
           </div>
           <div className="chart">
             <h3>Weekly Temperature</h3>
+            <canvas id="myChart" width="400px" height="400px"></canvas>
+
           </div>
         </div>
 
@@ -269,23 +271,7 @@ function Main() {
           </nav>
         </div>
 
-        {/* <ShowWeather
-          lat={state.lat}
-          lon={state.lon}
-          city={state.city}
-          country={state.country}
-          temperatureC={state.temperatureC}
-          wind={state.wind}
-          pressure={state.pressure}
-          humidity={state.humidity}
-          visibility={state.visibility}
-          weather={state.weather}
-          icon={state.icon}
-          icons={defaults.icon}
-          color={defaults.color}
-          size={defaults.size}
-          animate={defaults.animate}
-        /> */}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       </div>
     </>
   );

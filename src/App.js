@@ -1,8 +1,6 @@
 import "./App.css";
 import Main from "./components/Main";
 import Navbar from "./components/Navbar";
-// import "../src/Responsive.css";
-import ShowWeather from "./components/ShowWeather";
 
 function App() {
   return (
@@ -14,7 +12,6 @@ function App() {
       <div className="container">
         <Navbar />
         <Main />
-        {/* <ShowWeather /> */}
       </div>
     </>
   );

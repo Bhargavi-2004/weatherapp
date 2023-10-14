@@ -248,6 +248,103 @@
   }
 }
 
+@media (max-width: 1388px) {
+  .container {
+    display: grid;
+    grid-template-columns: 15% 85.5%;
+  }
+
+  .main-container {
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 18% 80%;
+    grid-auto-columns: 73% 27%;
+    height: 100vh;
+    grid-template-rows: 10% 90%;
+    margin-left: -103px;
+  }
+
+  .horizontal-nav {
+    /* grid-template-columns: 41% 40%; */
+    width: 621px;
+    height: 98px;
+    margin-top: 12px;
+    margin: 6px 187px;
+  }
+
+  .climate {
+    grid-row: 2;
+    margin: 21px 86px;
+    padding-left: 100px;
+  }
+
+  .climate-cards {
+    display: grid;
+    grid-template-columns: 59% 56%;
+    grid-template-rows: 50% 50%;
+    height: 200px;
+    margin-top: 5px;
+  }
+
+  .card{
+    font-size: 12px;
+  }
+
+  .date-time {
+    grid-column: 1;
+    width: 400px;
+  }
+}
+
+
+@media (max-width: 1012px) {
+  .container {
+    display: grid;
+    grid-template-columns: 15% 85.5%;
+  }
+
+  .main-container {
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 18% 80%;
+    grid-auto-columns: 73% 27%;
+    height: 100vh;
+    grid-template-rows: 10% 90%;
+    margin-left: -103px;
+  }
+
+  .horizontal-nav {
+    /* grid-template-columns: 41% 40%; */
+    width: 621px;
+    height: 98px;
+    margin-top: 12px;
+    margin: 6px 187px;
+  }
+
+  .climate {
+    grid-row: 2;
+    margin: 21px 86px;
+    padding-left: 100px;
+  }
+
+  .climate-cards {
+    display: grid;
+    grid-template-columns: 59% 56%;
+    grid-template-rows: 50% 50%;
+    height: 200px;
+    margin-top: 5px;
+  }
+
+  .card{
+    font-size: 12px;
+  }
+
+  .date-time {
+    grid-column: 1;
+    width: 400px;
+  }
+}
+
 /* Show Container */
 
 .show-container {
