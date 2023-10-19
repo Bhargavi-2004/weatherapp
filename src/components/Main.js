@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { apikey, base, url, getoptions } from "./Apikey";
 import "../App.css";
-import ShowWeather from "./ShowWeather";
 import ReactAnimatedWeather from "react-animated-weather";
-import axios from "axios";
-
 
 function Main() {
   const [search, setSearch] = useState(" ");
@@ -206,21 +203,31 @@ function Main() {
           <h3>Today Overview</h3>
           <div className="climate-cards">
             <div id="wind" className="card">
-              <img src='./images/wind.jpg' className="img" alt="" srcset="" />
+              <img src="./images/wind.jpg" className="img" alt="" srcset="" />
               <p className="climate-p">
                 Wind speed
                 <h1>{state.wind} Km/h</h1>
               </p>
             </div>
             <div id="humidity" className="card">
-              <img  src='./images/humidity.jpg' className="img" alt="" srcset="" />
+              <img
+                src="./images/humidity.jpg"
+                className="img"
+                alt=""
+                srcset=""
+              />
               <p className="climate-p">
                 Humidity
                 <h1>{state.humidity} g.m-3</h1>
               </p>
             </div>
             <div id="pressure" className="card">
-              <img src='./images/pressure.jpg' className="img" alt="" srcset="" />
+              <img
+                src="./images/pressure.jpg"
+                className="img"
+                alt=""
+                srcset=""
+              />
 
               <p className="climate-p">
                 Pressure
@@ -228,7 +235,12 @@ function Main() {
               </p>
             </div>
             <div id="visibility" className="card">
-              <img src='./images/visibility.jpg' className="img" alt="" srcset="" />
+              <img
+                src="./images/visibility.jpg"
+                className="img"
+                alt=""
+                srcset=""
+              />
 
               <p className="climate-p">
                 Visibility
@@ -238,8 +250,6 @@ function Main() {
           </div>
           <div className="chart">
             <h3>Weekly Temperature</h3>
-            <canvas id="myChart" width="400px" height="400px"></canvas>
-
           </div>
         </div>
 
@@ -270,8 +280,6 @@ function Main() {
             </div>
           </nav>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       </div>
     </>
   );

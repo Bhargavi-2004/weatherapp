@@ -42,8 +42,7 @@
 /* App container */
 .container {
   display: grid;
-  height: 100vh;
-  /* grid-template-columns: 18% 62% 20.2%; */
+  height: 97vh;
   grid-template-columns: 18% 82.2%;
 }
 
@@ -51,7 +50,7 @@
 
 .navbar-vertical {
   grid-column: 1;
-  height: 100vh;
+  height: 97vh;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -98,6 +97,7 @@
   padding-top: 12px;
 }
 
+
 /* Main-container */
 
 .main-container {
@@ -105,13 +105,12 @@
   display: grid;
   grid-template-rows: 18% 80%;
   grid-auto-columns: 72% 27.5%;
-  height: 100vh;
+  height: 97vh;
 }
 
 .horizontal-nav {
   grid-row: 1;
   display: grid;
-  /* grid-template-columns: 60% 40%;  */
   grid-template-columns: 59% 40%;
   background-color: #f8f9fa;
   width: 799px;
@@ -225,7 +224,7 @@
     display: grid;
     grid-template-rows: 18% 80%;
     grid-auto-columns: 73% 27%;
-    height: 100vh;
+    height: 97vh;
     grid-template-rows: 10% 90%;
     margin-left: -103px;
   }
@@ -259,13 +258,12 @@
     display: grid;
     grid-template-rows: 18% 80%;
     grid-auto-columns: 73% 27%;
-    height: 100vh;
+    height: 97vh;
     grid-template-rows: 10% 90%;
     margin-left: -103px;
   }
 
   .horizontal-nav {
-    /* grid-template-columns: 41% 40%; */
     width: 621px;
     height: 98px;
     margin-top: 12px;
@@ -308,13 +306,12 @@
     display: grid;
     grid-template-rows: 18% 80%;
     grid-auto-columns: 73% 27%;
-    height: 100vh;
+    height: 97vh;
     grid-template-rows: 10% 90%;
     margin-left: -103px;
   }
 
   .horizontal-nav {
-    /* grid-template-columns: 41% 40%; */
     width: 621px;
     height: 98px;
     margin-top: 12px;
@@ -349,7 +346,7 @@
 
 .show-container {
   grid-column: 2;
-  height: 100vh;
+  height: 97vh;
   margin-top: 0;
   background-color: #053a6e;
   border-right: 1px solid #e9ecef;
