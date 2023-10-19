@@ -211,7 +211,7 @@ function Main() {
             </div>
             <div id="humidity" className="card">
               <img
-                src="./images/humidity.jpg"
+                src="./images/humidity.png"
                 className="img"
                 alt=""
                 srcset=""
@@ -223,7 +223,7 @@ function Main() {
             </div>
             <div id="pressure" className="card">
               <img
-                src="./images/pressure.jpg"
+                src="./images/pressure.png"
                 className="img"
                 alt=""
                 srcset=""

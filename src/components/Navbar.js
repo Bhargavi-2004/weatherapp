@@ -6,19 +6,21 @@ function Navbar() {
   return (
     <>
       <nav className="navbar-vertical">
-        <div className="weather-name">Weather</div>
+        <div className="weather-name">
+          <Link className="weather-name" to="/">Weather</Link>
+          </div>
         <ul className="nav-ul">
           <li className="nav-item">
-            <Link to="/">Dashboard</Link>
+            <Link className="nav-item" to="/">Dashboard</Link>
           </li>
           <li className="nav-item">
-            <Link to="/Map">Map</Link>
+            <Link className="nav-item" to="/Map">Map</Link>
           </li>
           <li className="nav-item">
-            <Link to="/SavedLocation">Saved Location</Link>
+            <Link className="nav-item" to="/SavedLocation">Saved Location</Link>
           </li>
           <li className="nav-item">
-            <Link to="/Calender">Calender</Link>
+            <Link className="nav-item" to="/Calender">Calender</Link>
           </li>
         </ul>
       </nav>
