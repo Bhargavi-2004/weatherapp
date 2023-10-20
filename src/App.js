@@ -2,7 +2,7 @@ import "./App.css";
 import Main from "./components/Main";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Map from "./components/Map.js";
+import Map from "./components/Map";
 import Calender from "./components/Calender";
 import SavedLocation from "./components/SavedLocation";
 
@@ -19,10 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/Map" element={<Map />} />
-            <Route
-             path="/SavedLocation"
-              element={<SavedLocation />}
-            />
+            <Route path="/SavedLocation" element={<SavedLocation />} />
             <Route path="/Calender" element={<Calender />} />
           </Routes>
         </Router>

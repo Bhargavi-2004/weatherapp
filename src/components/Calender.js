@@ -1,15 +1,21 @@
-import React from "react";
-function Calender() {
+import React, { useState, useCallback } from "react";
+import { Calendar } from "@natscale/react-calendar";
+import "./calender.css";
+
+export default function Calender() {
+  const [value, setValue] = useState();
+
+  const onChange = useCallback(
+    (value) => {
+      setValue(value);
+    },
+    [setValue]
+  );
+
   return (
-    <>
-      <div
-        className="container"
-        style={{ border: "2px solid red", height: "500px", width: "1000px" }}
-      >
-        <h1 style={{ paddingLeft: "300px" }}>Calender</h1>
-      </div>
-    </>
+    <div className="cal" >
+      <h1 className="calH1">Calendar</h1>
+      <Calendar className="calendar" value={value} onChange={onChange} />
+    </div>
   );
 }
-
-export default Calender;

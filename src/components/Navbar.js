@@ -16,12 +16,12 @@ function Navbar() {
           <li className="nav-item">
             <Link className="nav-item" to="/Map">Map</Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-item" to="/SavedLocation">Saved Location</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-item" to="/Calender">Calender</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </>

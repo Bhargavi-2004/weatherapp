@@ -293,6 +293,18 @@
   font-size: 2rem;
 }
 
+/* day */
+.day_card{
+  height: 100px;
+  width: 100px;
+  border: 2px solid red;
+}
+
+.day-detail-icon{
+  margin-top: 2px;
+  font-size: 1rem;
+}
+
 /* .chart {
   width: 799px;
   height: 250px;
@@ -693,7 +705,7 @@
 @media (min-width: 1260px) {
   .container {
     height: 122vh;
-    grid-template-columns: 20% 82.2%;
+    grid-template-columns: 18% 82.2%;
   }
 
   .show-container,

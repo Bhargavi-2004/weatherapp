@@ -1,0 +1,18 @@
+.cal {
+  height: 100vh;
+  margin-left: 250px;
+  width: 1210px;
+  background-color: aliceblue;
+}
+
+.calH1{
+    font-weight: 600px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    padding-left: 500px;
+}
+
+.calendar{
+    margin-left: 431px;
+}
+

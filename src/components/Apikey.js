@@ -13,3 +13,5 @@ module.exports.getoptions = {
     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
   },
 };
+
+module.exports.map_api = "AIzaSyDFyzUbCFUUs-SL3oGWmUJytNc5iv8plYc";
