@@ -1,0 +1,8 @@
+Integration using src in script is a way to include external JavaScript code into an HTML document. This is done by using the <script> tag with the src attribute. The value of the src attribute should be the URL of the external JavaScript file.
+
+
+Integration using src in script has a number of advantages:
+
+It allows you to reuse the same JavaScript code on multiple pages.
+It makes your code more modular and easier to maintain.
+It can improve the performance of your web pages by loading the JavaScript code in parallel with the HTML code.

@@ -294,21 +294,21 @@
 }
 
 /* day */
-.day_card{
+.day_card {
   height: 100px;
   width: 100px;
   border: 2px solid red;
 }
 
-.day-detail-icon{
+.day-detail-icon {
   margin-top: 2px;
   font-size: 1rem;
 }
 
-/* .chart {
+.chart {
   width: 799px;
   height: 250px;
-} */
+}
 
 @media (max-width: 425px) {
   .container {
@@ -416,6 +416,7 @@
 @media (max-width: 768px) and (min-height: 652px) and (min-height: 470px) {
   .container {
     grid-template-columns: 21% 87.2%;
+    grid-template-columns: 31% 87.2%;
   }
 
   .navbar-vertical {
@@ -431,21 +432,27 @@
     padding: 6px 2px;
   }
 
-  .main-container {
+  /* .main-container {
     grid-auto-columns: 72% 27.5%;
+  } */
+  .main-container {
+    grid-auto-columns: 67% 27.5%;
   }
 
   .horizontal-nav {
     width: 453px;
     margin: 12px 21px;
+    margin: 12px -33px;
   }
 
   .climate {
     margin: -6px 23px;
+    margin: -6px -39px;
   }
 
   .climate-cards {
     grid-template-columns: 51% 51%;
+    grid-template-columns: 41% 46%;
   }
 
   .climate-p {
@@ -478,7 +485,7 @@
   }
 
   .climate {
-    margin: -6px 48px;
+    margin: -126px 48px;
   }
 
   .climate-cards {
@@ -494,6 +501,7 @@
   .navbar-vertical {
     width: 176px;
     height: 147vh;
+    height: 184vh;
   }
 
   .main-container {
@@ -503,8 +511,10 @@
   .horizontal-nav {
     /* width: 358px; */
     width: 161px;
+    width: 303px;
     /* margin: 12px 90px; */
     margin: 12px 98px;
+    margin: 12px 59px;
     display: flex;
     flex-direction: column;
     height: 189px;
@@ -517,11 +527,14 @@
   .climate {
     margin: 74px 100px;
     /* margin: 74px 78px; */
+    margin: 74px 138px;
+    margin: 74px 59px;
   }
 
   .climate-cards {
     grid-template-columns: 118% 124%;
     /* grid-template-columns: 56% 66%; */
+    grid-template-columns: 58% 62%;
   }
 
   .climate-p h1 {
@@ -542,6 +555,7 @@
 
   .show-container {
     height: 139vh;
+    height: 184vh;
     width: 235px;
   }
 
@@ -642,7 +656,8 @@
   }
 
   .climate {
-    margin: 104px 85px;
+    /* margin: 104px 85px; */
+    margin: 104px 104px;
   }
 
   .climate-cards {
