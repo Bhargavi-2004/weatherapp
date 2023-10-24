@@ -3,7 +3,6 @@ import { AsyncPaginate } from "react-select-async-paginate";
 import { apikey, base, url, getoptions } from "./Apikey";
 import "../App.css";
 import ReactAnimatedWeather from "react-animated-weather";
-import Barchart from "./components/Barchart";
 
 function Main() {
   const [search, setSearch] = useState(" ");
@@ -251,7 +250,6 @@ function Main() {
           </div>
           <div className="chart">
             <h3>Weekly Temperature</h3>
-            <Barchart />
           </div>
         </div>
 
