@@ -1,11 +1,11 @@
 import React from "react";
 import { Bar, Chart } from "react-chartjs-2";
-import { Chart as ChartJS } from 'chart.js/auto';
+import { Chart as ChartJS } from "chart.js/auto";
 
-function Barchart({ chartData }) {
+function Barchart({ chartData, options }) {
   return (
-    <div>
-      <Bar type="bar" data={chartData} />
+    <div style={{ width: "1000px", height: "200px" }}>
+      <Bar type="bar" data={chartData} options={options} />
     </div>
   );
 }

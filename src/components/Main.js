@@ -5,6 +5,7 @@ import "../App.css";
 import ReactAnimatedWeather from "react-animated-weather";
 import { UserData } from "./Data";
 import Barchart from "./User";
+import Linechart from "./Temp";
 
 function Main() {
   const [search, setSearch] = useState(" ");
@@ -28,6 +29,16 @@ function Main() {
     pressure: undefined,
     visibility: undefined,
     weather: undefined,
+  });
+
+  const [userdata, setUserData] = useState({
+    label: UserData.map((data) => data.year),
+    datasets: [
+      {
+        label: "User Gained",
+        data: UserData.map((data) => data.userGain),
+      },
+    ],
   });
 
   function getPosition(options) {
@@ -59,7 +70,32 @@ function Main() {
     });
 
     console.log("setState: ", state);
+
+    const weeklyTemperatureData = response.list.map((item) => item.main.temp);
+    console.log(weeklyTemperatureData);
+
+    setUserData({
+      labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+      datasets: [
+        {
+          label: "Temperature",
+          data: weeklyTemperatureData,
+          fill: false,
+          borderColor: "rgb(75, 192, 192)",
+          tension: 0.1,
+        },
+      ],
+    });
   }
+
+  const options = {
+    scales: {
+      xAxes: [{ type: "category", labels: userdata.label }],
+      yAxes: [
+        { type: "linear", label: "Temperature", ticks: { stepSize: 10 } },
+      ],
+    },
+  };
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -108,9 +144,9 @@ function Main() {
         return { options: [] }; // Return an object with an empty options prop
       });
 
-    const apicall =
-      await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}
-`);
+    const apicall = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
+    );
 
     // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
@@ -132,7 +168,10 @@ function Main() {
       weather: response.weather[0].main,
       description: response.weather[0].description,
     });
+    
     setSearch(state.city);
+
+    // getWeather(state.lat, state.lon);
     return search_apicall;
   }
 
@@ -183,15 +222,8 @@ function Main() {
     animate: true,
   };
 
-  const [userdata, setUserData] = useState({
-    label: UserData.map((data) => data.year),
-    datasets: [
-      {
-        label: "User Gained",
-        data: UserData.map((data) => data.userGain),
-      },
-    ],
-  });
+  // console.log("State after ending: ", state);
+
   return (
     <>
       <div className="main-container">
@@ -261,7 +293,8 @@ function Main() {
           </div>
           <div className="chart">
             <h3>Weekly Temperature</h3>
-            <Barchart chartData={userdata} />
+            {/* <Barchart chartData={userdata} options={options} /> */}
+            <Linechart chartData={userdata} options={options} />
           </div>
         </div>
 
