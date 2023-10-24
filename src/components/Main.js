@@ -3,6 +3,8 @@ import { AsyncPaginate } from "react-select-async-paginate";
 import { apikey, base, url, getoptions } from "./Apikey";
 import "../App.css";
 import ReactAnimatedWeather from "react-animated-weather";
+import { UserData } from "./Data";
+import Barchart from "./User";
 
 function Main() {
   const [search, setSearch] = useState(" ");
@@ -181,6 +183,15 @@ function Main() {
     animate: true,
   };
 
+  const [userdata, setUserData] = useState({
+    label: UserData.map((data) => data.year),
+    datasets: [
+      {
+        label: "User Gained",
+        data: UserData.map((data) => data.userGain),
+      },
+    ],
+  });
   return (
     <>
       <div className="main-container">
@@ -250,6 +261,7 @@ function Main() {
           </div>
           <div className="chart">
             <h3>Weekly Temperature</h3>
+            <Barchart chartData={userdata} />
           </div>
         </div>
 
