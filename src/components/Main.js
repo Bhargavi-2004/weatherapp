@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { AsyncPaginate } from "react-select-async-paginate";
 import { apikey, base, url, getoptions } from "./Apikey";
 import "../App.css";
 import ReactAnimatedWeather from "react-animated-weather";
 import { UserData } from "./Data";
 import Barchart from "./User";
+import axios from "axios";
 import Linechart from "./Temp";
+import Search from "./Search";
+import "./images/icons8-wind.gif";
 
 function Main() {
-  const [search, setSearch] = useState(" ");
-  const [query, setQuery] = useState(" ");
-  const [error, setError] = useState(" ");
+  const [day_1, setDay_1] = useState({});
+  const [day_2, setDay_2] = useState({});
+  const [day_3, setDay_3] = useState({});
+  const [day_4, setDay_4] = useState({});
+  const [day_5, setDay_5] = useState({});
+
   const [state, setState] = useState({
     lat: undefined,
     lon: undefined,
@@ -71,11 +76,44 @@ function Main() {
 
     console.log("setState: ", state);
 
+    setDay_1({
+      temp: response.list[1].main.temp,
+      day: response.list[1].dt_txt,
+      w: response.list[0].weather[0].icon,
+    });
+    setDay_2({
+      temp: response.list[2].main.temp,
+      day: response.list[2].dt_txt,
+      w: response.list[0].weather[0].icon,
+    });
+    setDay_3({
+      temp: response.list[3].main.temp,
+      day: response.list[3].dt_txt,
+      w: response.list[0].weather[0].icon,
+    });
+    setDay_4({
+      temp: response.list[4].main.temp,
+      day: response.list[4].dt_txt,
+      w: response.list[0].weather[0].icon,
+    });
+    setDay_5({
+      temp: response.list[5].main.temp,
+      day: response.list[5].dt_txt,
+      w: response.list[0].weather[0].icon,
+    });
+
     const weeklyTemperatureData = response.list.map((item) => item.main.temp);
     console.log(weeklyTemperatureData);
 
     setUserData({
-      labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+      labels: [
+        "after 3hr",
+        "after 6hr",
+        "after 9hr",
+        "after 12hr",
+        "after 15hr",
+        "after 18hr",
+      ],
       datasets: [
         {
           label: "Temperature",
@@ -88,7 +126,10 @@ function Main() {
     });
   }
 
-  const options = {
+  // const forecast = [day_1, day_2, day_3, day_4, day_5];
+  const forecast = [day_1, day_2];
+
+  const option = {
     scales: {
       xAxes: [{ type: "category", labels: userdata.label }],
       yAxes: [
@@ -115,66 +156,6 @@ function Main() {
   }, []);
 
   setInterval(() => getWeather(state.lat, state.lon), 600000);
-
-  async function handleSearch() {}
-
-  async function loadedOptions(city) {
-    const search_apicall = await fetch(`${url}?namePrefix=${city}`, getoptions)
-      .then((response) => response.json())
-      .then((response) => {
-        setSearch(city.name);
-        setState({
-          lat: city.data[0].latitude,
-          lon: city.data[0].longitude,
-        });
-
-        // console.log(response);
-
-        return {
-          options: response.data.map((city) => {
-            return {
-              value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.countryCode}`,
-            };
-          }),
-        };
-      })
-      .catch((err) => {
-        console.log(err);
-        return { options: [] }; // Return an object with an empty options prop
-      });
-
-    const apicall = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
-    );
-
-    // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-
-    const response = await apicall.json();
-    console.log(response);
-
-    setState({
-      lat: response.coord.lat,
-      lon: response.coord.lon,
-      city: response.name,
-      temperatureC: Math.round(response.main.temp),
-      temperatureF: Math.round(response.main.temp * 1.8 + 32),
-      country: response.sys.country,
-      humidity: response.main.humidity,
-      icon: response.weather[0].icon,
-      wind: response.wind.speed,
-      pressure: response.main.pressure,
-      visibility: response.visibility,
-      weather: response.weather[0].main,
-      description: response.weather[0].description,
-    });
-    
-    setSearch(state.city);
-
-    // getWeather(state.lat, state.lon);
-    return search_apicall;
-  }
-
   let days = [
     "Sunday",
     "Monday",
@@ -234,11 +215,7 @@ function Main() {
           </div>
 
           <div className="search">
-            <AsyncPaginate
-              loadOptions={loadedOptions}
-              onChange={handleSearch}
-              value={search}
-            />
+            <Search />
           </div>
         </nav>
 
@@ -246,7 +223,7 @@ function Main() {
           <h3>Today Overview</h3>
           <div className="climate-cards">
             <div id="wind" className="card">
-              <img src="./images/wind.jpg" className="img" alt="" srcset="" />
+              <img src="./images/icons8-wind.gif" className="img" alt="" srcset="" />
               <p className="climate-p">
                 Wind speed
                 <h1>{state.wind} Km/h</h1>
@@ -292,9 +269,9 @@ function Main() {
             </div>
           </div>
           <div className="chart">
-            <h3>Weekly Temperature</h3>
+            <h3>Hourly Temperature</h3>
             {/* <Barchart chartData={userdata} options={options} /> */}
-            <Linechart chartData={userdata} options={options} />
+            <Linechart chartData={userdata} options={option} />
           </div>
         </div>
 
@@ -320,10 +297,27 @@ function Main() {
                 />
                 <p className="nav-item-temp">{state.temperatureC}°C</p>
               </div>
-
               <p className="detail-icon">{state.weather}</p>
             </div>
           </nav>
+          <div className="cont">
+            <div className="detail-c">
+              <div className="icon-c">
+                {forecast.map((day) => (
+                  <>
+                    <p>Date: {day.day}</p>
+                    <ReactAnimatedWeather
+                      icon="10d"
+                      color={defaults.color}
+                      animate={defaults.animate}
+                      size={defaults.size}
+                    />
+                    <p className="nav-item-temp-c">{day.temp}°C</p>
+                  </>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

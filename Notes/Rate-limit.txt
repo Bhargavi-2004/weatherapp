@@ -1,0 +1,10 @@
+What are rate limits and burst limits?
+A rate limit is the maximum number of calls you want to allow in a particular time interval. Setting rate limits enables you to manage the network traffic for your APIs and for specific operations within your APIs. API Connect supports two types of rate limiting:
+
+1) rate limit :
+
+A specified number of calls to be accepted within a defined time period; for example, 100 calls per minute. In API Connect, rate limits can be defined as unlimited, or with a specified number of calls per second, minute, hour, day, or week.
+
+2) Burst limit :
+
+A rate limit that is applied to a very small time period.

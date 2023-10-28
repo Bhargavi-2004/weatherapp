@@ -1,0 +1,14 @@
+The loadOptions prop is used to load options from a remote source as the user types. 
+To use it, you need to provide a function that returns a promise (or callback) that resolves to be your search data.
+
+https://www.npmjs.com/package/react-select-async-paginate
+
+
+The loadOptions function takes two parameters:
+
+search: A string that contains the current search term.
+options: An array of data that is currently being displayed in the select element.
+The loadOptions function should return an object with the following properties:
+
+options: An array of data that will be displayed in the select element.
+hasMore: A boolean value that indicates whether there is more data to load.

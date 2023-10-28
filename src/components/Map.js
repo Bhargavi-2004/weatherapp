@@ -24,7 +24,7 @@ function Map(props) {
     <>
       <iframe
         style={{
-          height: "950px",
+          height: "100vh",
           width: "1500px",
           border: "0",
           marginLeft: "250px",
