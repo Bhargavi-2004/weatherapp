@@ -1,0 +1,27 @@
+1920×1080
+360×800 
+1366×768
+1536×864
+390×844
+414×896
+412×915
+393×873
+1280×720
+360×780
+360×640
+1440×900
+375×812
+1600×900
+2560×1440
+810×1080
+
+Here are some common breakpoints: 
+Mobile devices: 320px–480px
+iPads and tablets: 481px–768px
+Small screens, like laptops: 769px–1024px
+Large screens, like desktops: 1025px–1200px
+Extra large screens, like TVs: 1201px and above
+Some recommend building to the following responsive breakpoints: 
+Mobile: 360px
+Tablet: 768px
+Desktop: 1366px
