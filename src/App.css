@@ -49,13 +49,13 @@ body {
 .container {
   display: grid;
   height: 97vh;
-  grid-template-columns: 18% 82.2%;
+  grid-template-columns: 17% 83%;
 }
 
 /* Navbar Section */
 
 .navbar-vertical {
-  grid-column: 1;
+  grid-column: 1 / 2;
   height: 97vh;
   position: fixed;
   top: 0;
@@ -108,10 +108,10 @@ body {
 /* Main-container */
 
 .main-container {
-  grid-column: 2;
+  grid-column: 2 / 3;
   display: grid;
-  grid-template-rows: 18% 80%;
-  grid-auto-columns: 72% 27.5%;
+  grid-template-rows: 35% 65%;
+  grid-template-columns: 73% 27%;
   height: 97vh;
 }
 
@@ -119,9 +119,9 @@ body {
   grid-row: 1;
   display: grid;
   position: absolute;
-  grid-template-columns: 59% 40%;
+  grid-template-columns: 60% 40%;
   background-color: #f8f9fa;
-  width: 799px;
+  width: 902px;
   height: 98px;
   margin-top: 12px;
   margin: 12px;
@@ -153,9 +153,9 @@ body {
 
 .climate {
   grid-row: 2;
-  margin-top: 12px;
+  /* margin-top: 12px;
   margin: -23px 12px;
-  position: relative;
+  position: relative; */
 }
 
 .climate-cards {
@@ -218,8 +218,8 @@ body {
 .show-container {
   grid-column: 2;
   position: fixed;
-  margin-left: 820px;
-  width: 320px;
+  margin-left: 922px;
+  width: 338px;
   height: 97vh;
   margin-top: 0;
   background-color: #053a6e;

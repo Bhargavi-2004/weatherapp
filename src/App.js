@@ -1,10 +1,8 @@
-import "./App.css";
-import Main from "./components/Main";
-import Navbar from "./components/Navbar";
+import "./css/App.css";
+import Main from "./component/Main";
+import Navbar from "./component/Navbar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Map from "./components/Map";
-import Calender from "./components/Calender";
-import SavedLocation from "./components/SavedLocation";
+import Map from "./component/Map";
 
 function App() {
   return (
@@ -13,14 +11,12 @@ function App() {
         name="viewport"
         content="width=device-width, initial-scale=1.0"
       ></meta>
-      <div className="container">
+      <div className="main-container">
         <Router>
           <Navbar />
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/Map" element={<Map />} />
-            <Route path="/SavedLocation" element={<SavedLocation />} />
-            <Route path="/Calender" element={<Calender />} />
           </Routes>
         </Router>
       </div>
