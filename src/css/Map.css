@@ -1,0 +1,45 @@
+/* main-container */
+.map-container {
+  height: 200px;
+  width: auto;
+}
+
+/* Iframe */
+.iFrame {
+  width: 100%;
+  height: 100vh;
+}
+
+/* back */
+.back {
+  height: 50px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 30px;
+  padding-top: 12px;
+  background-color: rgb(249, 248, 246);
+}
+
+.back a {
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
+  grid-column: 1;
+  color: rgb(9, 9, 9);
+}
+
+.back a:hover {
+  color: rgb(155, 0, 0);
+}
+
+.back p {
+  display: flex;
+  justify-content: start;
+  grid-column: 2;
+  margin-top: 5px;
+}
+
+.back p:hover {
+  color: rgb(155, 0, 0);
+  cursor: pointer;
+}

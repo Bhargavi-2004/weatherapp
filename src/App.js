@@ -3,6 +3,7 @@ import Main from "./component/Main";
 import Navbar from "./component/Navbar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Map from "./component/Map";
+import Calender from "./component/Calender";
 
 function App() {
   return (
@@ -13,10 +14,10 @@ function App() {
       ></meta>
       <div className="main-container">
         <Router>
-          <Navbar />
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/Map" element={<Map />} />
+            <Route path="/" element={<Navbar />} />
+            <Route path="//component/Calender.js" element={<Calender />} />
+            <Route path="/component/Map.js" element={<Map />} />
           </Routes>
         </Router>
       </div>

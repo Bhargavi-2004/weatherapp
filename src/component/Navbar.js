@@ -5,18 +5,38 @@ import CIcon from "@coreui/icons-react";
 import { cilHamburgerMenu, cilSearch } from "@coreui/icons";
 
 function Navbar() {
+  function openmodal() {
+    var open = (document.querySelector(".option").style.display = "flex");
+  }
+
+  function closemodal() {
+    var close = (document.querySelector(".option").style.display = "none");
+  }
+
   return (
     <>
       {/* <!-- container --> */}
+
       <div class="container">
+        {/* option feild */}
+        <div className="option">
+          <a href="/component/Map.js">Map</a>
+          <a href="/component/Calender.js">Calender</a>
+        </div>
+        {/* option feild end */}
 
         {/* <!-- overview --> */}
         <div class="overview">
-
           {/* <!-- header --> */}
           <div class="header">
             <div class="setting">
-              <CIcon icon={cilHamburgerMenu} className="large-icon" />
+              <a
+                className="modal-btn"
+                onClick={openmodal}
+                onDoubleClick={closemodal}
+              >
+                <CIcon icon={cilHamburgerMenu} className="large-icon" />
+              </a>
             </div>
             <div class="name">City, Country</div>
             <div class="search">

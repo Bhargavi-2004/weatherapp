@@ -53,6 +53,7 @@ body {
   background-size: cover;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  height: 100vh;
 }
 
 /* main-container */
@@ -92,6 +93,41 @@ body {
 
 /* header component */
 .setting {
+}
+
+/* .setting component */
+.modal-btn {
+  display: block;
+}
+.modal-btn:hover {
+  display: block;
+}
+
+.option {
+  background-color: white;
+  color: black;
+  border: 2px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 30px;
+  top: 45px;
+  list-style: none;
+  padding-left: 0px;
+  height: 70px;
+  width: 111px;
+  padding-top: 29px;
+  text-align: center;
+  display: none;
+}
+
+.option a {
+  text-decoration: none;
+}
+
+.option a:hover {
+  color: orange;
 }
 
 .large-icon {
@@ -177,3 +213,5 @@ body {
 #i4 {
   border: 2px solid black;
 }
+
+/* https://in.pinterest.com/pin/652881277248848154/ */
