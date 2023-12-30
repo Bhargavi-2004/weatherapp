@@ -175,9 +175,17 @@ body {
   /* border: 2px solid white; */
 }
 
+.react-icon {
+  margin: auto;
+  height: 150px;
+  width: 150px;
+}
+
 .temp {
   display: flex;
   justify-content: center;
+  font-size: 70px;
+  margin: auto;
   /* border: 2px solid blue; */
 }
 
