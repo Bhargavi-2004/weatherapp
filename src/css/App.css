@@ -202,24 +202,36 @@ body {
 
 /* deatils component */
 .i {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.i p {
+  margin-left: 90px;
 }
 
 #i1 {
-  border: 2px solid black;
+  background-image: url("../icons/humidity.png");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
 }
 
 #i2 {
-  border: 2px solid black;
+  background-image: url("../icons/barometer.png");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
 }
 
 #i3 {
-  border: 2px solid black;
+  background-image: url("../icons/fresh-air.png");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
 }
 
 #i4 {
-  border: 2px solid black;
+  background-image: url("../icons/view.png");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
 }
 
 /* https://in.pinterest.com/pin/652881277248848154/ */

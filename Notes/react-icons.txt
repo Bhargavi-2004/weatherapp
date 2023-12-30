@@ -1,3 +1,6 @@
 refer:
 
 https://coreui.io/react/docs/components/icon/#:~:text=To%20use%20a%20single%20react,icon%20using%20the%20size%20prop.
+
+weather icon:
+https://www.flaticon.com/search?word=air%20pressure

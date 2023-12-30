@@ -52,16 +52,12 @@ function Navbar() {
       visibility: response.list[0].visibility,
       wind: response.list[0].wind.speed,
       humidity: response.list[0].main.humidity,
-      pressure: response.list[0].pressure,
+      pressure: response.list[0].main.pressure,
       description: response.list[0].weather[0].description,
       icon: response.list[0].weather[0].icon,
       weather: response.list[0].weather[0].main,
       time: response.list[0].dt_txt,
     });
-
-    state.display = `https://openweathermap.org/img/wn/${state.icon}.png`;
-
-    // const img = `https://openweathermap.org/img/wn/${state.icon}.png`
   }
 
   useEffect(() => {
@@ -69,6 +65,7 @@ function Navbar() {
       getPosition().then((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
+
         console.log(lat, lon);
 
         setTimeout(() => {
@@ -81,7 +78,7 @@ function Navbar() {
   const defaults = {
     icon: "10d",
     color: "#1e1e1e",
-    size: "100%",
+    size: "80px",
     animate: true,
   };
 
@@ -89,7 +86,7 @@ function Navbar() {
     <>
       {/* <!-- container --> */}
 
-      <div class="container">
+      <div className="container">
         {/* option feild */}
         <div className="option">
           <a href="/component/Map.js">Map</a>
@@ -98,10 +95,10 @@ function Navbar() {
         {/* option feild end */}
 
         {/* <!-- overview --> */}
-        <div class="overview">
+        <div className="overview">
           {/* <!-- header --> */}
-          <div class="header">
-            <div class="setting">
+          <div className="header">
+            <div className="setting">
               <a
                 className="modal-btn"
                 onClick={openmodal}
@@ -110,20 +107,20 @@ function Navbar() {
                 <CIcon icon={cilHamburgerMenu} className="large-icon" />
               </a>
             </div>
-            <div class="name">
+            <div className="name">
               {state.city}, {state.country}
             </div>
-            <div class="search">
+            <div className="search">
               <CIcon icon={cilSearch} className="large-icon" />
             </div>
           </div>
           {/* <!-- header end --> */}
 
           {/* <!-- current-weather --> */}
-          <div class="current-weather">
-            <div class="text">{state.weather}</div>
-            <div class="information">
-              <div class="icon react-icon">
+          <div className="current-weather">
+            <div className="text">{state.weather}</div>
+            <div className="information">
+              <div className="icon react-icon">
                 <ReactAnimatedWeather
                   icon={state.icon}
                   color={defaults.color}
@@ -131,24 +128,24 @@ function Navbar() {
                   size={defaults.size}
                 />
               </div>
-              <div class="temp">{state.temperatureC}°C</div>
+              <div className="temp">{state.temperatureC}°C</div>
             </div>
           </div>
           {/* <!-- current-weather end --> */}
 
           {/* <!-- details --> */}
-          <div class="details">
-            <div class="i" id="i1">
-              {state.humidity}
+          <div className="details">
+            <div className="i" id="i1">
+              <p>{state.humidity}</p>
             </div>
-            <div class="i" id="i2">
-              {state.pressure}
+            <div className="i" id="i2">
+              <p>{state.pressure}</p>
             </div>
-            <div class="i" id="i3">
-              {state.wind}
+            <div className="i" id="i3">
+              <p>{state.wind}</p>
             </div>
-            <div class="i" id="i4">
-              {state.visibility}
+            <div className="i" id="i4">
+              <p>{state.visibility}</p>
             </div>
           </div>
           {/* <!-- details end --> */}
@@ -156,11 +153,13 @@ function Navbar() {
         {/* <!-- overview end --> */}
 
         {/* <!-- display --> */}
-        <div class="display"></div>
+        <div className="display">
+          
+        </div>
         {/* <!-- display end --> */}
       </div>
       {/* <!-- container end --> */}
-      {/* https://codesandbox.io/p/sandbox/reactweatherproject-vud6ws?file=%2Fsrc%2FWeatherIcon.js%3A29%2C7-30%2C24 */}
+      
     </>
   );
 }
