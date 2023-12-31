@@ -21,8 +21,23 @@ function Navbar() {
     pressure: undefined,
     visibility: undefined,
     weather: undefined,
-    time: undefined,
     display: undefined,
+    time1: undefined,
+    time2: undefined,
+    time3: undefined,
+    time4: undefined,
+    d1: undefined,
+    d2: undefined,
+    d3: undefined,
+    d4: undefined,
+    icon1: undefined,
+    icon2: undefined,
+    icon3: undefined,
+    icon4: undefined,
+    day1: undefined,
+    day2: undefined,
+    day3: undefined,
+    day4: undefined,
   });
 
   function openmodal() {
@@ -38,6 +53,9 @@ function Navbar() {
       navigator.geolocation.getCurrentPosition(resolve, reject, option);
     });
   }
+
+  const day = new Date();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
 
   async function getWeather(lat, lon) {
     const apicall = await fetch(`${base}lat=${lat}&lon=${lon}&appid=${apikey}`);
@@ -56,8 +74,21 @@ function Navbar() {
       description: response.list[0].weather[0].description,
       icon: response.list[0].weather[0].icon,
       weather: response.list[0].weather[0].main,
-      time: response.list[0].dt_txt,
+      time1: response.list[4].dt_txt,
+      time2: response.list[12].dt_txt,
+      time3: response.list[24].dt_txt,
+      time4: response.list[32].dt_txt,
+      d1: Math.round(response.list[4].main.temp),
+      d2: Math.round(response.list[12].main.temp),
+      d3: Math.round(response.list[24].main.temp),
+      d4: Math.round(response.list[32].main.temp),
+      icon1: response.list[4].weather[0].main,
+      icon2: response.list[12].weather[0].icon,
+      icon3: response.list[24].weather[0].icon,
+      icon4: response.list[32].weather[0].icon,
     });
+
+    console.log(state.icon1);
   }
 
   useEffect(() => {
@@ -73,12 +104,19 @@ function Navbar() {
         }, 10000);
       });
     }
-  }, 1000);
+  }, []);
 
   const defaults = {
     icon: "10d",
     color: "#1e1e1e",
-    size: "80px",
+    size: "50px",
+    animate: true,
+  };
+
+  const defaultsSeg = {
+    icon: "10d",
+    color: "white",
+    size: "30px",
     animate: true,
   };
 
@@ -154,12 +192,58 @@ function Navbar() {
 
         {/* <!-- display --> */}
         <div className="display">
-          
+          <div className="display-segment" id="segment-1">
+            <p>{days[new Date(state.time1).getDay()]}</p>
+            <div className="display-icon">
+              <ReactAnimatedWeather
+                icon={state.icon}
+                color={defaultsSeg.color}
+                size={defaultsSeg.size}
+                animate={defaultsSeg.animate}
+              />
+            </div>
+            <div className="segment-temp">{state.d1}°C</div>
+          </div>
+          <div className="display-segment" id="segment-2">
+            <p>{days[new Date(state.time2).getDay()]}</p>
+            <div className="display-icon">
+              <ReactAnimatedWeather
+                icon={state.icon}
+                color={defaultsSeg.color}
+                size={defaultsSeg.size}
+                animate={defaultsSeg.animate}
+              />
+            </div>
+            <div className="segment-temp">{state.d2}°C</div>
+          </div>
+          <div className="display-segment" id="segment-3">
+            <p>{days[new Date(state.time3).getDay()]}</p>
+            <div className="display-icon">
+              <ReactAnimatedWeather
+                icon={state.icon}
+                color={defaultsSeg.color}
+                size={defaultsSeg.size}
+                animate={defaultsSeg.animate}
+              />
+            </div>
+            <div className="segment-temp">{state.d3}°C</div>
+          </div>
+          <div className="display-segment" id="segment-4">
+            <p>{days[new Date(state.time4).getDay()]}</p>
+            <div className="display-icon">
+              <ReactAnimatedWeather
+                icon={state.icon}
+                color={defaultsSeg.color}
+                size={defaultsSeg.size}
+                animate={defaultsSeg.animate}
+              />
+            </div>
+            <div className="segment-temp">{state.d4}°C</div>
+          </div>
         </div>
         {/* <!-- display end --> */}
       </div>
       {/* <!-- container end --> */}
-      
     </>
   );
 }

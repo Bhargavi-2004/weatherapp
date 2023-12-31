@@ -67,7 +67,7 @@ body {
   margin: auto;
   /* border: 2px solid black; */
   border-radius: 10px;
-  height: 100vh;
+  height: 90%;
   width: 90%;
   grid-template:
     "overview" 70%
@@ -177,15 +177,16 @@ body {
 
 .react-icon {
   margin: auto;
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
 
 .temp {
   display: flex;
   justify-content: center;
-  font-size: 70px;
+  font-size: 50px;
   margin: auto;
+  color: #282c34;
   /* border: 2px solid blue; */
 }
 
@@ -204,6 +205,8 @@ body {
 .i {
   display: grid;
   grid-template-columns: 50% 50%;
+  background-position-y: center;
+  font-size: 30px;
 }
 
 .i p {
@@ -232,6 +235,37 @@ body {
   background-image: url("../icons/view.png");
   background-size: 50px 50px;
   background-repeat: no-repeat;
+}
+
+/* display */
+.display {
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(4, 2fr);
+  height: 150px;
+}
+
+/* display component */
+.display-segment {
+  display: grid;
+  color: rgb(249, 247, 247);
+  margin-top: 30px;
+}
+
+.display-segment p {
+  text-align: center;
+}
+
+.display-icon {
+  margin: 11px 11px;
+  display: flex;
+  justify-content: center;
+}
+
+.segment-temp {
+  color: #f5f6f7;
+  font-size: small;
+  padding-left: 23px;
 }
 
 /* https://in.pinterest.com/pin/652881277248848154/ */
