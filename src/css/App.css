@@ -206,11 +206,11 @@ body {
   display: grid;
   grid-template-columns: 50% 50%;
   background-position-y: center;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .i p {
-  margin-left: 90px;
+  margin-left: 60px;
 }
 
 #i1 {
@@ -254,6 +254,7 @@ body {
 
 .display-segment p {
   text-align: center;
+  font-size: 1.5rem;
 }
 
 .display-icon {
@@ -264,8 +265,145 @@ body {
 
 .segment-temp {
   color: #f5f6f7;
-  font-size: small;
-  padding-left: 23px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) and (min-height: 1024px) {
+  .main-container {
+    height: 100vh;
+  }
+
+  .container {
+    margin-top: 0px;
+  }
+  
+  .overview {
+    grid-template:
+      "header" 15%
+      "current-weather" 2fr
+      "details" 2fr;
+  }
+
+  .large-icon {
+    height: 65px;
+  }
+
+  .name {
+    font-size: 30px;
+    margin: 24px 10px;
+  }
+
+  .current-weather {
+    grid-template:
+      "text" 20%
+      "information";
+  }
+
+  .text {
+    font-size: 30px;
+    margin-top: 10px;
+  }
+
+  .react-icon {
+    height: 140px;
+  }
+
+  .temp {
+    font-size: 85px;
+  }
+
+  .details {
+    height: 280px;
+  }
+
+  .i p {
+    margin-left: 105px;
+    margin-top: 55px;
+    font-size: 40px;
+  }
+
+  #i1,
+  #i2,
+  #i3,
+  #i4 {
+    background-size: 82px 77px;
+  }
+
+  .display {
+    height: 285px;
+    margin-top: 131px;
+  }
+
+  .display-segment p {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0px;
+  }
+
+  .display-icon {
+    height: 70px;
+  }
+
+  .segment-temp {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 600px) {
+  .container {
+    height: 600px;
+  }
+
+  .overview {
+    grid-template:
+      "header" 20%
+      "current-weather" 2fr
+      "details" 2fr;
+  }
+
+  .large-icon {
+    height: 57px;
+  }
+
+  .name {
+    font-size: 40px;
+  }
+
+  .current-weather {
+    grid-template:
+      "text" 20%
+      "information";
+  }
+
+  .text {
+    font-size: 30px;
+  }
+
+  .i p {
+    grid-column: 2;
+    margin-left: -73px;
+    font-size: 40px;
+  }
+
+  #i1,
+  #i2,
+  #i3,
+  #i4 {
+    margin-left: 120px;
+  }
+
+  .display-segment p {
+    height: 13px;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .segment-temp {
+    font-size: 27px;
+  }
 }
 
 /* https://in.pinterest.com/pin/652881277248848154/ */

@@ -1,6 +1,6 @@
 /* main-container */
 .map-container {
-  height: 200px;
+  height: auto;
   width: auto;
 }
 
@@ -43,4 +43,21 @@
 .back p:hover {
   color: rgb(155, 0, 0);
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .back {
+    grid-template-columns: 40% 60%;
+    margin-top: 0px;
+    height: fit-content;
+  }
+  .back p {
+    margin-top: 20px;
+    font-size: 35px;
+    margin-left: -10px;
+  }
+
+  .back a {
+    margin-bottom: 12px;
+  }
 }

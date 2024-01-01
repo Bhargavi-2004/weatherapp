@@ -65,8 +65,10 @@ function Navbar() {
     setState({
       country: response.city.country,
       city: response.city.name,
-      temperatureC: Math.round(response.list[0].main.temp),
-      temperatureF: Math.round(response.list[0].main.temp * 1.8 + 32),
+      temperatureC: Math.round(response.list[0].main.temp - 273.15),
+      temperatureF: Math.round(
+        (response.list[0].main.temp - 273.15) * 1.8 + 32
+      ),
       visibility: response.list[0].visibility,
       wind: response.list[0].wind.speed,
       humidity: response.list[0].main.humidity,
@@ -78,10 +80,10 @@ function Navbar() {
       time2: response.list[12].dt_txt,
       time3: response.list[24].dt_txt,
       time4: response.list[32].dt_txt,
-      d1: Math.round(response.list[4].main.temp),
-      d2: Math.round(response.list[12].main.temp),
-      d3: Math.round(response.list[24].main.temp),
-      d4: Math.round(response.list[32].main.temp),
+      d1: Math.round(response.list[4].main.temp - 273.15),
+      d2: Math.round(response.list[12].main.temp - 273.15),
+      d3: Math.round(response.list[24].main.temp - 273.15),
+      d4: Math.round(response.list[32].main.temp - 273.15),
       icon1: response.list[4].weather[0].main,
       icon2: response.list[12].weather[0].icon,
       icon3: response.list[24].weather[0].icon,
@@ -116,7 +118,7 @@ function Navbar() {
   const defaultsSeg = {
     icon: "10d",
     color: "white",
-    size: "30px",
+    size: "40px",
     animate: true,
   };
 
@@ -174,16 +176,16 @@ function Navbar() {
           {/* <!-- details --> */}
           <div className="details">
             <div className="i" id="i1">
-              <p>{state.humidity}</p>
+              <p>{state.humidity}%</p>
             </div>
             <div className="i" id="i2">
-              <p>{state.pressure}</p>
+              <p>{state.pressure}hPa</p>
             </div>
             <div className="i" id="i3">
-              <p>{state.wind}</p>
+              <p>{state.wind}m/s</p>
             </div>
             <div className="i" id="i4">
-              <p>{state.visibility}</p>
+              <p>{state.visibility}m</p>
             </div>
           </div>
           {/* <!-- details end --> */}
