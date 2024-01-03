@@ -8,8 +8,8 @@ import ReactAnimatedWeather from "react-animated-weather";
 
 function Navbar() {
   const [state, setState] = useState({
-    lat: undefined,
-    lon: undefined,
+    lat: null,
+    lon: null,
     temperatureC: undefined,
     temperatureF: undefined,
     city: undefined,
@@ -30,10 +30,10 @@ function Navbar() {
     d2: undefined,
     d3: undefined,
     d4: undefined,
-    icon1: undefined,
-    icon2: undefined,
-    icon3: undefined,
-    icon4: undefined,
+    icon1: "CLEAR_DAY",
+    icon2: "CLEAR_DAY",
+    icon3: "CLEAR_DAY",
+    icon4: "CLEAR_DAY",
     day1: undefined,
     day2: undefined,
     day3: undefined,
@@ -48,6 +48,14 @@ function Navbar() {
     var close = (document.querySelector(".option").style.display = "none");
   }
 
+  function opensearch() {
+    var open = (document.querySelector(".search-city").style.display = "block");
+  }
+
+  function closesearch() {
+    var close = (document.querySelector(".search-city").style.display = "none");
+  }
+
   function getPosition() {
     return new Promise((resolve, reject, option) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, option);
@@ -56,6 +64,32 @@ function Navbar() {
 
   const day = new Date();
   let days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
+
+  const cityInput = document.querySelector(".search-city input");
+  if (cityInput) {
+    cityInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        const cityName = cityInput.value;
+        city_parameter(cityName);
+      }
+    });
+    cityInput.value = "";
+  }
+
+  async function city_parameter(cityName) {
+    const city_call = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apikey}`
+    );
+
+    const response = await city_call.json();
+    console.log(response);
+
+    if (response) {
+      getWeather(response.coord.lat, response.coord.lon);
+    } else {
+      alert("Latitude and longitude not yet available.");
+    }
+  }
 
   async function getWeather(lat, lon) {
     const apicall = await fetch(`${base}lat=${lat}&lon=${lon}&appid=${apikey}`);
@@ -76,6 +110,7 @@ function Navbar() {
       description: response.list[0].weather[0].description,
       icon: response.list[0].weather[0].icon,
       weather: response.list[0].weather[0].main,
+      display: response.list[0].dt_txt,
       time1: response.list[4].dt_txt,
       time2: response.list[12].dt_txt,
       time3: response.list[24].dt_txt,
@@ -84,13 +119,11 @@ function Navbar() {
       d2: Math.round(response.list[12].main.temp - 273.15),
       d3: Math.round(response.list[24].main.temp - 273.15),
       d4: Math.round(response.list[32].main.temp - 273.15),
-      icon1: response.list[4].weather[0].main,
+      icon1: response.list[4].weather[0].icon,
       icon2: response.list[12].weather[0].icon,
       icon3: response.list[24].weather[0].icon,
       icon4: response.list[32].weather[0].icon,
     });
-
-    console.log(state.icon1);
   }
 
   useEffect(() => {
@@ -127,12 +160,22 @@ function Navbar() {
       {/* <!-- container --> */}
 
       <div className="container">
-        {/* option feild */}
+        {/* option field */}
         <div className="option">
           <a href="/component/Map.js">Map</a>
           <a href="/component/Calender.js">Calender</a>
         </div>
-        {/* option feild end */}
+        {/* option field end */}
+
+        {/* serach field */}
+        <div className="search-city">
+          <input
+            type="text"
+            role="button"
+            placeholder="Enter the name of city"
+          />
+        </div>
+        {/* search field end */}
 
         {/* <!-- overview --> */}
         <div className="overview">
@@ -151,7 +194,13 @@ function Navbar() {
               {state.city}, {state.country}
             </div>
             <div className="search">
-              <CIcon icon={cilSearch} className="large-icon" />
+              <a
+                className="modal-btn"
+                onClick={opensearch}
+                onDoubleClick={closesearch}
+              >
+                <CIcon icon={cilSearch} className="large-icon" />
+              </a>
             </div>
           </div>
           {/* <!-- header end --> */}
@@ -169,6 +218,9 @@ function Navbar() {
                 />
               </div>
               <div className="temp">{state.temperatureC}°C</div>
+            </div>
+            <div className="today">
+              {state.display} {days[new Date(state.display).getDay()]}
             </div>
           </div>
           {/* <!-- current-weather end --> */}
@@ -198,7 +250,7 @@ function Navbar() {
             <p>{days[new Date(state.time1).getDay()]}</p>
             <div className="display-icon">
               <ReactAnimatedWeather
-                icon={state.icon}
+                icon={state.icon1}
                 color={defaultsSeg.color}
                 size={defaultsSeg.size}
                 animate={defaultsSeg.animate}
@@ -210,7 +262,7 @@ function Navbar() {
             <p>{days[new Date(state.time2).getDay()]}</p>
             <div className="display-icon">
               <ReactAnimatedWeather
-                icon={state.icon}
+                icon={state.icon2}
                 color={defaultsSeg.color}
                 size={defaultsSeg.size}
                 animate={defaultsSeg.animate}
@@ -222,7 +274,7 @@ function Navbar() {
             <p>{days[new Date(state.time3).getDay()]}</p>
             <div className="display-icon">
               <ReactAnimatedWeather
-                icon={state.icon}
+                icon={state.icon3}
                 color={defaultsSeg.color}
                 size={defaultsSeg.size}
                 animate={defaultsSeg.animate}
@@ -234,7 +286,7 @@ function Navbar() {
             <p>{days[new Date(state.time4).getDay()]}</p>
             <div className="display-icon">
               <ReactAnimatedWeather
-                icon={state.icon}
+                icon={state.icon4}
                 color={defaultsSeg.color}
                 size={defaultsSeg.size}
                 animate={defaultsSeg.animate}

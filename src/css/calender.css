@@ -1,0 +1,58 @@
+.cont {
+  display: grid;
+}
+
+.header-cal {
+  font-size: 50px;
+  text-align: center;
+}
+
+.calender {
+  display: grid;
+  grid-template-rows: 10%;
+  margin: auto;
+  border: 2px solid black;
+  height: 600px;
+  width: 600px;
+}
+
+.month {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 60% [p] 20% 20%;
+  height: 50px;
+  font-size: 40px;
+  text-align: left;
+  margin-top: 12px;
+}
+
+.icon-cal {
+  margin-top: 8px;
+  display: flex;
+  height: 30px;
+  width: 30px;
+}
+
+#ic1 {
+  display: flex;
+  justify-content: end;
+}
+
+#ic2 {
+  display: flex;
+  justify-content: center;
+}
+
+/* weekdays */
+.weekdays {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+/* day */
+.day {
+    
+}

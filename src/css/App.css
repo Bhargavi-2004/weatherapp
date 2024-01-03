@@ -145,6 +145,24 @@ body {
   flex-direction: row-reverse;
 }
 
+/* search-city */
+.search-city {
+  position: absolute;
+  top: 70px;
+  right: 1px;
+  display: none;
+  height: 32px;
+  width: 156px;
+}
+
+.search-city input {
+  color: #282c34;
+  height: 27px;
+  width: 150px;
+  border-radius: 2px;
+  border: none;
+}
+
 /* current-weather  */
 .current-weather {
   display: grid;
@@ -188,6 +206,10 @@ body {
   margin: auto;
   color: #282c34;
   /* border: 2px solid blue; */
+}
+
+.today {
+  text-align: center;
 }
 
 /* details */
@@ -242,7 +264,7 @@ body {
   display: grid;
   margin: 0;
   grid-template-columns: repeat(4, 2fr);
-  height: 150px;
+  height: 226px;
 }
 
 /* display component */
@@ -277,7 +299,7 @@ body {
   .container {
     margin-top: 0px;
   }
-  
+
   .overview {
     grid-template:
       "header" 15%
