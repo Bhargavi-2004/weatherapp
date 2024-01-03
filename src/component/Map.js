@@ -11,7 +11,7 @@ function closemodal() {
   var close = (document.querySelector(".option").style.display = "none");
 }
 
-function Map() {
+function Map(props) {
   const [location, setLocation] = useState({
     lat: "20.91",
     lon: "70.33",

@@ -71,6 +71,8 @@ function Navbar() {
       if (event.key === "Enter") {
         const cityName = cityInput.value;
         city_parameter(cityName);
+        const close = (document.querySelector(".search-city").style.display =
+          "none");
       }
     });
     cityInput.value = "";
@@ -163,7 +165,7 @@ function Navbar() {
         {/* option field */}
         <div className="option">
           <a href="/component/Map.js">Map</a>
-          <a href="/component/Calender.js">Calender</a>
+          {/* <a href="/component/Calender.js">Calender</a> */}
         </div>
         {/* option field end */}
 

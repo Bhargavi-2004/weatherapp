@@ -54,6 +54,7 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   height: 100vh;
+  background-color: rgb(20, 16, 13);
 }
 
 /* main-container */
@@ -111,13 +112,13 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 30px;
-  top: 45px;
+  left: 56px;
+  top: 68px;
   list-style: none;
   padding-left: 0px;
-  height: 70px;
+  height: 30px;
   width: 111px;
-  padding-top: 29px;
+  padding-top: 13px;
   text-align: center;
   display: none;
 }

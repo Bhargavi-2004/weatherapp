@@ -4,38 +4,6 @@ import CIcon from "@coreui/icons-react";
 import { cilArrowThickLeft, cilArrowThickRight } from "@coreui/icons";
 
 function Calender() {
-  const daysContainer = document.querySelector(".days"),
-    prevBtn = document.querySelector("#ic1"),
-    nextBtn = document.querySelector("#ic2"),
-    monthContainer = document.querySelector(".month");
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const days = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
-
-  // Get year and month
-  const date = new date();
-
-  let currentmonth = date.getMonth();
-  let currentYear = date.getYear();
-
-  // function to rener days:
-  function renderDays() {
-    
-  }
 
   return (
     <>
@@ -43,12 +11,12 @@ function Calender() {
         <div className="header-cal">Calender</div>
         <div className="calender">
           <div className="month">
-            <div>January 2024</div>
+            <div className="currentmonth">Januanry 2023</div>
             <a id="ic1">
-              <CIcon icon={cilArrowThickLeft} className="icon-cal" />
+              <CIcon icon={cilArrowThickLeft} className="icon-cal prevBtn" />
             </a>
             <a id="ic2">
-              <CIcon icon={cilArrowThickRight} className="icon-cal" />
+              <CIcon icon={cilArrowThickRight} className="icon-cal nextBtn" />
             </a>
           </div>
           <div className="weekdays">
@@ -66,5 +34,7 @@ function Calender() {
     </>
   );
 }
+
+// https://github.com/opensource-coding/Dynamic-Calendar-in-HTML-CSS-JavaScript/blob/main/index.html
 
 export default Calender;

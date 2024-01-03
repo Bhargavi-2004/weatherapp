@@ -16,7 +16,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Navbar />} />
-            <Route path="//component/Calender.js" element={<Calender />} />
+            {/* <Route path="/component/Calender.js" element={<Calender />} /> */}
             <Route path="/component/Map.js" element={<Map />} />
           </Routes>
         </Router>

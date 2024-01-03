@@ -60,4 +60,37 @@
   .back a {
     margin-bottom: 12px;
   }
+
+  /* search-city */
+  .search-city {
+    top: 80px;
+    height: 50px;
+    width: 200px;
+  }
+
+  .search-city input {
+    color: #282c34;
+    height: 50px;
+    width: 150px;
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 600px) {
+  /* search-city */
+  .search-city {
+    top: 80px;
+    right: 20px;
+    height: 70px;
+    width: 200px;
+  }
+
+  ::placeholder {
+    font-size: 20px;
+  }
+
+  .search-city input {
+    color: #282c34;
+    height: 66px;
+    width: 200px;
+  }
 }
